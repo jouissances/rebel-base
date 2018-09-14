@@ -1,24 +1,16 @@
-# README
+# Rebel Base
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This web application is a platform for book club communities around the world — where readers can discuss books, characters, chapters, quotes, etc. Link is [here]().
 
-Things you may want to cover:
+## Usage
 
-* Ruby version
+No installation is required — just sign up, browse for clubs to join (or start your own), and get cozy!
 
-* System dependencies
+## License
 
-* Configuration
+The application is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-* Database creation
+## Contributing
 
-* Database initialization
+Bug reports and pull requests are welcome on GitHub. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org/) code of conduct.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
