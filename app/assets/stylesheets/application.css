@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+
+ @font-face {
+    font-family: 'Maison Neue';
+    font-weight: 200;
+    src: url('../fonts/MaisonNeue-Book.ttf');
+}
+
+* {
+    font-family: 'Maison Neue';
+    font-weight: 200;
+    font-size: 12px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+}
+
+header img {
+    height: 50px;
+}
+
+header nav a {
+    margin: 0 12px;
+    text-decoration: none;
+    transition: all 300ms ease-out;
+    color: #000000;
+}
+
+header nav a:hover {
+    color: #cccccc;
+}
