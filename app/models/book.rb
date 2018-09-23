@@ -1,4 +1,4 @@
 class Book < ApplicationRecord
-    belongs_to :clubs
-    belongs_to :users
+    has_many :clubs
+    has_many :users, through: :clubs
 end
