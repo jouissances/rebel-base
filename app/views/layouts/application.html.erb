@@ -11,20 +11,10 @@
 
   <body>
 
-    <header>
-      <div class="logo">
-        <img src="/images/logo.png" />
-      </div>
-      <nav>
-        <%= link_to "About", about_path  %>
-        <%= link_to "Sign In", new_session_path %>
-        <%= link_to "Sign Up", new_user_path %>
-      </nav>
-    </header>
-
     <%= yield %>
 
     <footer>
+      <p>Explore hundreds of books meticulously handpicked by people like you.</p>
     </footer>
   
   </body>

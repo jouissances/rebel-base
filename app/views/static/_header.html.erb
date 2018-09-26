@@ -1,0 +1,10 @@
+<header>
+    <div class="logo">
+    <%= link_to image_tag("/images/logo.png"), root_path %>
+    </div>
+    <nav>
+        <%= link_to "About", about_path  %>
+        <%= link_to "Sign In", new_session_path %>
+        <%= link_to "Sign Up", new_user_path %>
+    </nav>
+</header>

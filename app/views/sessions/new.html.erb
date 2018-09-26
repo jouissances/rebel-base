@@ -1,0 +1,12 @@
+<%= render partial: 'users/header' %>
+
+<%= form_for @user, url: url_for(controller: 'sessions', action: 'create')  do |f| %>
+
+    <p><%= f.text_field :email, placeholder: "E-mail address" %></p>
+    <p><%= f.password_field :password, placeholder: "Password" %></p>
+
+    <p><%= f.submit "Sign In" %></p>
+
+<% end %>
+
+<p>Don't have an account with us? <%= link_to 'Sign up', new_user_path %> here.</p>
