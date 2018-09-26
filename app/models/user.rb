@@ -22,9 +22,10 @@ class User < ApplicationRecord
             u.last_name = auth['info']['name'].partition(" ").last
             u.email = auth['info']['email']
             u.image = auth['info']['image']
+            u.password = u.password_confirmation = SecureRandom.urlsafe_base64(n=6)
         end
 
-        if self.exists?(user)
+        if User.exists?(user.id)
           user
         else
           user.save!
