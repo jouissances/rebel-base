@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   resources :clubs
   resources :books
   resources :users
+  resources :shelves
+  resources :memberships
+  resources :discussions
+  resources :comments
+
   resources :sessions
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'static#index'
   get 'about', to: 'static#about'
@@ -13,6 +17,13 @@ Rails.application.routes.draw do
   
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
+
+  namespace :admin do 
+    resources :users
+  end
+
   delete '/signout' => 'sessions#destroy'
+
+  get '/auth/facebook/callback' => 'sessions#create'
 
 end
