@@ -10,51 +10,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_17_133010) do
+ActiveRecord::Schema.define(version: 2018_09_25_070526) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.boolean "series"
-    t.text "excerpt"
+    t.text "description"
     t.string "isbn"
-    t.integer "club_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "image"
+    t.integer "shelf_id"
+    t.index ["shelf_id"], name: "index_books_on_shelf_id"
   end
 
   create_table "clubs", force: :cascade do |t|
     t.string "name"
     t.string "genre"
+    t.text "description"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_clubs_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id"
+    t.integer "discussion_id"
+    t.index ["discussion_id"], name: "index_comments_on_discussion_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
     t.integer "user_id"
     t.integer "book_id"
-    t.integer "member_count"
-    t.string "current_selection"
+    t.index ["book_id"], name: "index_discussions_on_book_id"
+    t.index ["user_id"], name: "index_discussions_on_user_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.boolean "member", default: false
+    t.integer "user_id"
+    t.integer "club_id"
+    t.index ["club_id"], name: "index_memberships_on_club_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "shelves", force: :cascade do |t|
+    t.string "current_book"
     t.string "read_books"
     t.string "upcoming_books"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "club_id"
+    t.index ["club_id"], name: "index_shelves_on_club_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "first_name"
-    t.string "last_name"
     t.string "gender"
+    t.string "image"
+    t.string "uid"
     t.string "location"
     t.string "email"
     t.string "password_digest"
     t.text "bio"
-    t.text "reason"
     t.string "twitter"
     t.string "facebook"
     t.string "instagram"
-    t.string "current_read"
-    t.integer "book_id"
-    t.integer "club_id"
-    t.integer "book_count"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "last_name"
+    t.string "first_name"
   end
 
 end
