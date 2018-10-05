@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_25_070526) do
+ActiveRecord::Schema.define(version: 2018_10_04_033023) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2018_09_25_070526) do
     t.text "body"
     t.integer "user_id"
     t.integer "book_id"
+    t.text "book_quote"
     t.index ["book_id"], name: "index_discussions_on_book_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
@@ -64,18 +65,28 @@ ActiveRecord::Schema.define(version: 2018_09_25_070526) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
     t.string "gender"
     t.string "image"
-    t.string "uid"
     t.string "location"
-    t.string "email"
-    t.string "password_digest"
-    t.text "bio"
     t.string "twitter"
     t.string "facebook"
     t.string "instagram"
-    t.string "last_name"
     t.string "first_name"
+    t.string "last_name"
+    t.text "bio"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end

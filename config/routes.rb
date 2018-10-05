@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
+  root 'static#index'
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :clubs
   resources :books
-  resources :users
   resources :shelves
   resources :memberships
   resources :discussions
   resources :comments
 
-  resources :sessions
-
-  root 'static#index'
-  get 'about', to: 'static#about'
+  get '/about', to: 'static#about'
 
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
