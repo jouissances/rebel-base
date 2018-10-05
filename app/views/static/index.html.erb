@@ -3,4 +3,50 @@
 <%# 3. Feature some new clubs, newest first %>
 <%# 4. Feature some new discussions, newest first %>
 
-<%= render partial: 'header' %>
+<h1>When book clubs meet digital spaces.</h1>
+<p>Start an open discussion about your favourite books and authors. Read more. Find like-minded individuals.</p>
+
+<%= button_to "Get started", new_user_registration_path %>
+<%= link_to "Browse for clubs", clubs_path %>
+
+<div>
+    <h2>New Clubs</h2>
+
+    <% @clubs.each do |club| %>
+    <div>
+        <img src="" />>
+
+        <%= club.shelf.current_book.title %>
+        <%= club.name %>
+        <%= club.genre %>
+        <%= club.description %>
+
+        <%= link_to "Join club", { :controller => "membership", :action => "new", :user_id => session[:user_id], :club_id => club.id } %>
+    </div>
+    <% end %>
+
+    <%= link_to "See more →", clubs_path %>
+
+</div>
+
+<div>
+    <h2>Curious About What We Discuss?</h2>
+    <p>We round up some of the most interesting discussions every week and feature them here.</p>
+
+    <% @discussions.each do |discussion| %>
+    <div>
+        <img src="" />
+
+        <%= discussion.book.title %>
+        <%= discussion.book_quote %>
+        <%= discussion.title %>
+
+        — currently discussed by <%= discussion.book.club.name %>
+
+    </div>
+    <% end %>
+
+    <%= link_to "See more →", discussions_path %>
+
+
+</div>
