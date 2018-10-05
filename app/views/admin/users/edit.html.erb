@@ -1,8 +1,14 @@
 <%= form_for ([:admin, @user]) do |f| %>
     First name: <%= f.text_field :first_name %><br />
-    Last name : <%= f.text_field :last_name %><br />
-    Location : <%= f.text_field :location %><br />
-    Biography : <%= f.text_area :bio %><br />
+    Last name: <%= f.text_field :last_name %><br />
+    Location: <%= f.text_field :location %><br />
+    Biography: <%= f.text_area :bio %><br />
+
+    Twitter: <%= f.text_field :twitter %><br />
+    Facebook: <%= f.text_field :facebook %><br />
+    Instagram: <%= f.text_field :instagram %><br />
+
+    Slack: <%= f.text_field :slack %><br />
 
     <%= f.submit %>
 

@@ -16,6 +16,24 @@
     <%= current_user.facebook %>
     <%= current_user.instagram %>
 
-<h2>Clubs</h2>
+<h2>Let's chat on Slack</h2>
+    <%= current_user.slack %>
 
-<h2>Books</h2>
+<h2>Clubs</h2>
+    <% current_user.clubs.each do |club| %>
+        <div>
+            <%= club.name %>
+            <%= club.genre %>
+        </div>
+    <% end %>
+
+<h2>Shelf</h2>
+    <% current_user.shelf.books.each do |book| %>
+        <div>
+            <img src="" />
+
+            <%= book.title %>
+            <%= book.author %>
+            Reading with <%= book.shelf.club %>
+        </div>
+    <% end %>
