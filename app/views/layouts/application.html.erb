@@ -5,16 +5,26 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag "https://use.fontawesome.com/releases/v5.3.1/css/all.css" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 
+    <%= render partial: 'layouts/header' %>
+
+    <% if notice %> <%= notice %> <% end %>
+    <% if alert %> <%= alert %> <% end %>
+
     <%= yield %>
 
     <footer>
-      <p>Explore hundreds of books meticulously handpicked by people like you.</p>
+      <p>Explore hundreds of books meticulously handpicked by people like you. © 2018 rebelbase</p>
+      <div>
+        <a href="#"> <i class="fab fa-facebook"></i></a>
+        <a href="#"> <i class="fab fa-instagram"></i></a>
+      </div>
     </footer>
   
   </body>
