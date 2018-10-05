@@ -1,2 +1,9 @@
-<%# 1. Show user dashboard %>
-<%# 2. Allow user to edit basic profile (name, email address, password, bio, etc.) %>
+<%= form_for ([:admin, @user]) do |f| %>
+    First name: <%= f.text_field :first_name %><br />
+    Last name : <%= f.text_field :last_name %><br />
+    Location : <%= f.text_field :location %><br />
+    Biography : <%= f.text_area :bio %><br />
+
+    <%= f.submit %>
+
+<% end %>
