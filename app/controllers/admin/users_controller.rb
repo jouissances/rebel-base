@@ -2,6 +2,7 @@ class Admin::UsersController < ApplicationController
 
     def show
         @user = User.find_by(id: params[:id])
+        @clubs = @user.followees(Club)
     end
 
     def edit
@@ -17,7 +18,7 @@ class Admin::UsersController < ApplicationController
     private
 
     def admin_user_params
-        params.require(:user).permit(:first_name, :last_name, :location, :bio, :gender, :location, :twitter, :facebook, :instagram)
+        params.require(:user).permit(:first_name, :last_name, :location, :bio, :gender, :location, :twitter, :facebook, :instagram, :slack)
     end
 
 end

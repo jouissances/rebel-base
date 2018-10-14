@@ -6,7 +6,8 @@
 
 <%= button_to "Edit profile", edit_admin_user_path, { method: 'get' } %>
 
-<i class="fas fa-map-marker-alt"><%= current_user.location %></i>
+<i class="fas fa-map-marker-alt"></i>
+<%= current_user.location %>
 
 <h2>Bio</h2>
     <%= current_user.bio %>
@@ -20,7 +21,7 @@
     <%= current_user.slack %>
 
 <h2>Clubs</h2>
-    <% current_user.clubs.each do |club| %>
+    <% @clubs.each do |club| %>
         <div>
             <%= club.name %>
             <%= club.genre %>
@@ -28,7 +29,7 @@
     <% end %>
 
 <h2>Shelf</h2>
-    <% current_user.shelf.books.each do |book| %>
+    <% current_user.books.each do |book| %>
         <div>
             <img src="" />
 
