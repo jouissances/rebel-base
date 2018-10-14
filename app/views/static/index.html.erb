@@ -6,7 +6,7 @@
 <h1>When book clubs meet digital spaces.</h1>
 <p>Start an open discussion about your favourite books and authors. Read more. Find like-minded individuals.</p>
 
-<%= button_to "Get started", new_user_registration_path %>
+<%= button_to "Get started", new_user_registration_path, { method: 'get' } %>
 <%= link_to "Browse for clubs", clubs_path %>
 
 <div>
@@ -14,18 +14,21 @@
 
     <% @clubs.each do |club| %>
     <div>
-        <img src="" />>
+        <img src="" />
 
-        <%= club.shelf.current_book.title %>
+        <% club.books.each do |book| %>
+            <%= book.title %>
+        <% end %>
+        
         <%= club.name %>
         <%= club.genre %>
         <%= club.description %>
 
-        <%= link_to "Join club", { :controller => "membership", :action => "new", :user_id => session[:user_id], :club_id => club.id } %>
+        <%= link_to "Join club", { :controller => "memberships", :action => "new", :user_id => session[:user_id], :club_id => club.id } %>
     </div>
     <% end %>
 
-    <%= link_to "See more →", clubs_path %>
+    <%= link_to "See more", clubs_path %>
 
 </div>
 
@@ -46,7 +49,7 @@
     </div>
     <% end %>
 
-    <%= link_to "See more →", discussions_path %>
+    <%= link_to "See more", discussions_path %>
 
 
 </div>
