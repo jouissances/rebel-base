@@ -9,4 +9,5 @@ class Club < ApplicationRecord
     has_many :memberships
     has_many :users, through: :memberships 
 
+    acts_as_followable
 end

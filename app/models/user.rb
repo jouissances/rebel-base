@@ -14,6 +14,10 @@ class User < ApplicationRecord
   has_many :comments
   has_many :discussions
 
+  acts_as_follower
+  acts_as_liker
+  acts_as_mentionable
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
       u.first_name = auth['info']['name'].partition(" ").first
