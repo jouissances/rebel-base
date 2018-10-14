@@ -7,3 +7,14 @@
 <%# 7. Guide users on how to start a discussion thread %>
 <%# 8. Allow users to participate in existing discussion thread, regardless of clubs %>
 <%# 9. Add a sticky code of conduct sidebar %>
+
+<h1><%= @club.name %></h1>
+
+<div class="club">
+    <%= link_to_toggle_club_follow @club %>
+</div>
+
+<h2><%= @club.description %></h2>
+
+<%= @club.genre %>
+
