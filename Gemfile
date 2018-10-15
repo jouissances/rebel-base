@@ -22,8 +22,10 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-
 gem 'dotenv-rails'
+
+gem 'simple_form'
+gem 'country_select'
 
 gem 'socialization'
 
