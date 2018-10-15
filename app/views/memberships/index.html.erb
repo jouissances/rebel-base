@@ -3,3 +3,5 @@
 <% @clubs.each do |club| %>
     <%= link_to club.name, club_path(club) %>
 <% end %>
+
+<%= link_to "Create A New Club", new_club_path %>
