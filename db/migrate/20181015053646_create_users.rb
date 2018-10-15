@@ -9,11 +9,13 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string "uid"
       t.string "location"
       t.string "email"
+      t.string "provider"
       t.string "password_digest"
       t.text "bio"
       t.string "twitter"
       t.string "facebook"
       t.string "instagram"
+      t.string "slack"
     end
   end
 end
