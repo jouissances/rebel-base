@@ -10,4 +10,7 @@ class Club < ApplicationRecord
     has_many :users, through: :memberships 
 
     acts_as_followable
+
+    validates_presence_of %w(name genre description)
+
 end
