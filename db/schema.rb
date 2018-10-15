@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_104314) do
+ActiveRecord::Schema.define(version: 2018_10_15_061135) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -26,12 +26,13 @@ ActiveRecord::Schema.define(version: 2018_10_11_104314) do
     t.string "name"
     t.string "genre"
     t.text "description"
+    t.integer "followers_count", default: 0
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id"
     t.integer "discussion_id"
+    t.integer "user_id"
     t.index ["discussion_id"], name: "index_comments_on_discussion_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -39,10 +40,10 @@ ActiveRecord::Schema.define(version: 2018_10_11_104314) do
   create_table "discussions", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.integer "user_id"
     t.text "book_quote"
-    t.integer "club_id"
-    t.index ["club_id"], name: "index_discussions_on_club_id"
+    t.integer "user_id"
+    t.integer "reading_id"
+    t.index ["reading_id"], name: "index_discussions_on_reading_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
@@ -67,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_10_11_104314) do
   end
 
   create_table "memberships", force: :cascade do |t|
-    t.boolean "member", default: false
+    t.boolean "admin", default: false
     t.integer "user_id"
     t.integer "club_id"
     t.index ["club_id"], name: "index_memberships_on_club_id"
@@ -84,6 +85,16 @@ ActiveRecord::Schema.define(version: 2018_10_11_104314) do
     t.index ["mentioner_id", "mentioner_type"], name: "fk_mentions"
   end
 
+  create_table "readings", force: :cascade do |t|
+    t.datetime "date_time"
+    t.integer "book_id"
+    t.integer "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_readings_on_book_id"
+    t.index ["club_id"], name: "index_readings_on_club_id"
+  end
+
   create_table "shelves", force: :cascade do |t|
     t.string "current_book"
     t.string "read_books"
@@ -93,28 +104,27 @@ ActiveRecord::Schema.define(version: 2018_10_11_104314) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "gender"
+    t.string "image"
+    t.string "uid"
+    t.string "location"
+    t.string "provider"
+    t.string "password_digest"
+    t.text "bio"
+    t.string "twitter"
+    t.string "facebook"
+    t.string "instagram"
+    t.string "slack"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "provider"
-    t.string "uid"
-    t.string "image"
-    t.string "location"
-    t.string "twitter"
-    t.string "facebook"
-    t.string "instagram"
-    t.string "first_name"
-    t.string "last_name"
-    t.text "bio"
-    t.string "slack"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end
