@@ -3,7 +3,8 @@
 class Club < ApplicationRecord
     has_one :shelf
     has_many :books, through: :shelf
-    has_many :discussions, through: :books
+    has_many :readings, through: :books
+    has_many :discussions, through: :readings
     has_many :comments, through: :discussions
 
     has_many :memberships
