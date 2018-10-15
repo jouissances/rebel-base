@@ -5,3 +5,20 @@
     <%# Random or Selection %>
     <%# Add Book %>
     <%# Code of Conduct %>
+
+<h1>New Club</h1>
+
+<%= simple_form_for @club, 
+  wrapper: :floating_labels_form,
+  defaults: { input_html: { style: 'height: 50px' } } do |f| %>
+
+  <%= f.error_notification %>
+
+  <%= f.input :name %>
+
+  <%= f.input :genre %>
+
+  <%= f.input :description, as: :string %>
+
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>
