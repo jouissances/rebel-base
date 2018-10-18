@@ -1,0 +1,15 @@
+<%= form_tag(new_club_shelf_book_path, method: :get) do %>
+    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title or Author" %>
+    <%= submit_tag "Search", class: "btn btn-primary btn-md", style: "margin-top: 5px" %>
+<% end %>
+
+<% if @books %>
+    <% @books.each do |book| %>
+        <img src=<%= book.covers[:small] %>>
+        <strong><%= book.title %></strong>
+        <%= book.isbn_10 %>
+        By: <%= book.authors.join(', ') %>
+        Rating: <%= book.average_rating ? book.average_rating : "N/A" %>
+        <%= link_to( "Add Book To Shelf", club_shelf_books_path(:action => "create", :isbn => book.isbn_10), :method => :post) %>
+    <% end %>
+<% end %>

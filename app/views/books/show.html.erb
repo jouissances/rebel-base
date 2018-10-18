@@ -10,5 +10,21 @@
 <%# 7. Show read count %>
 <%# 8. Show clubs reading the book %>
 <%# 9. Show book details (genres, characters, chapter themes) %>
-<%# 10. Add request e-book button %>
+<%# 10. Add request e-book details — https://support.google.com/books/partner/answer/3289675?hl=en %>
 <%# 11. Allow filtering of cards for specific clubs %>
+
+<%= link_to "Back to Shelf", club_shelf_path(:club_id => params[:club_id], :id => params[:shelf_id]) %>
+
+<h1><%= @book.title %></h1>
+<%= image_tag @book.image %>
+<p><%= @book.description %></p>
+<p><%= @book.isbn %></p>
+<p><%= @book.author %></p>
+
+<% if @book.id.to_s == @shelf.current_book %>
+        <%= link_to "Finish Reading", { :controller => :books, :action => 'update' }, method: "patch", class: "btn btn-success btn-md" %>
+<% else %>
+        <%= link_to "Set As Current Book", set_as_current_club_shelf_book_path(:id => @book.id), method: "patch", class: "btn btn-success btn-md", remote: true %>
+<% end %>
+
+<%= link_to "Remove Book",  { :controller => :books, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md" %>
