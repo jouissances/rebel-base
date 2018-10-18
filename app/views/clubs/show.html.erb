@@ -9,14 +9,22 @@
 <%# 9. Add a sticky code of conduct sidebar %>
 
 <h1><%= @club.name %></h1>
+<p><%= @club.genre %></p>
 
 <div class="club">
     <%= link_to_toggle_club_follow @club %>
 </div>
 
-<h2><%= @club.description %></h2>
+<p><%= pluralize(@club.followers_count, "Follower") %></p>
 
-<%= @club.genre %>
+<p><%= @club.description %></p>
 
-<%= pluralize(@club.followers_count, "Follower") %> 
+<%= link_to "See Shelf", club_shelf_path(@shelf) %>
 
+<% if @club.memberships.find_by_user_id(current_user.id).admin == true %>
+
+    <%= button_to "Edit Club", edit_club_path, method: "get", class: "btn btn-primary btn-md" %>
+
+    <%= button_to 'Delete Club', { :controller => :clubs, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md", data: { :confirm => 'Are you sure?' } %>
+
+<% end %>
