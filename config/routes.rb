@@ -3,9 +3,16 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :clubs
-  resources :books
-  resources :shelves
+  resources :clubs do
+    resources :shelves do
+      resources :books do
+        member do
+          patch :set_as_current
+        end
+      end
+    end
+  end
+
   resources :memberships
   resources :discussions
   resources :comments
