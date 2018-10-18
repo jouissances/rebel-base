@@ -1,6 +1,5 @@
 class MembershipsController < ApplicationController
 
-    # before_action :set_club
     before_action :set_user
 
     def index
@@ -34,10 +33,6 @@ class MembershipsController < ApplicationController
     end
 
     private
-
-    def set_club
-        @club = Club.find(params[:club_id])
-    end
 
     def set_user
         @user = current_user
