@@ -16,6 +16,6 @@
 
 # shelf = Shelf.create([ { id: 1 }, { current_book: less }, { read_books: [mockingbird, light] }, { upcoming_books: [beloved, goldfinch] }])
 
-hundred = Club.create!({ name: 'Hungry Hundred', genre: 'General', description: 'Conquer lists like ‘100 top bestsellers’, ‘100 books to read before you die’, ‘100 best novels of all time’.' })
-beer = Club.create!({ name: 'Books & Beer', genre: 'General', description: 'Traveling book swap community, with an ice cold-twist.' })
-shared = Club.create!({ name: 'Our Shared Self', genre: 'General', description: 'A Feminist book club.' })
+# hundred = Club.create!({ name: 'Hungry Hundred', genre: 'General', description: 'Conquer lists like ‘100 top bestsellers’, ‘100 books to read before you die’, ‘100 best novels of all time’.' })
+# beer = Club.create!({ name: 'Books & Beer', genre: 'General', description: 'Traveling book swap community, with an ice cold-twist.' })
+# shared = Club.create!({ name: 'Our Shared Self', genre: 'General', description: 'A Feminist book club.' })
