@@ -30,7 +30,8 @@ gem 'country_select'
 
 gem 'socialization'
 
-gem 'pluralize'
+gem 'google_books'
+# gem 'openlibrary'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -42,6 +43,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'activesupport'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
