@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_061135) do
+ActiveRecord::Schema.define(version: 2018_10_17_060314) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(version: 2018_10_15_061135) do
 
   create_table "shelves", force: :cascade do |t|
     t.string "current_book"
-    t.string "read_books"
-    t.string "upcoming_books"
+    t.text "read_books"
+    t.text "upcoming_books"
     t.integer "club_id"
     t.index ["club_id"], name: "index_shelves_on_club_id"
   end
