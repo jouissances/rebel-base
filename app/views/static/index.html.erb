@@ -20,11 +20,11 @@
             <%= book.title %>
         <% end %>
         
-        <%= club.name %>
+        <%= link_to club.name, club %>
         <%= club.genre %>
         <%= club.description %>
 
-        <%= link_to "Join club", { :controller => "memberships", :action => "new", :user_id => session[:user_id], :club_id => club.id } %>
+        <%= link_to "Join club", { :controller => "memberships", :action => "new", :user_id => session[:user_id], :club_id => club.id } if !club.followed_by?(current_user)  %>
     </div>
     <% end %>
 
