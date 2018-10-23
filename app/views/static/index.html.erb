@@ -14,11 +14,7 @@
 
     <% @clubs.each do |club| %>
     <div>
-        <img src="" />
-
-        <% club.books.each do |book| %>
-            <%= book.title %>
-        <% end %>
+        <%= image_tag Book.find(club.shelf.current_book).image if club.shelf.current_book %>
         
         <%= link_to club.name, club %>
         <%= club.genre %>
@@ -38,18 +34,15 @@
 
     <% @discussions.each do |discussion| %>
     <div>
-        <img src="" />
-
-        <%= discussion.book.title %>
         <%= discussion.book_quote %>
         <%= discussion.title %>
 
-        — currently discussed by <%= discussion.book.club.name %>
+        — currently discussed by <%= link_to discussion.book.club.name, club_path(discussion.book.club) %> in <%= link_to discussion.book.title, { :controller => "books", :action => "show", :id => discussion.book.id, :shelf_id => discussion.book.shelf.id, :club_id => discussion.book.club.id } %>
+
 
     </div>
     <% end %>
 
-    <%= link_to "See more", discussions_path %>
-
+    <%= link_to "See more", clubs_path %>
 
 </div>
