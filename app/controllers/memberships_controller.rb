@@ -23,13 +23,17 @@ class MembershipsController < ApplicationController
     def update
         @club = Club.find(params[:id])
         @user.follow!(@club)
-        redirect_to club_path(@club)
+        respond_to do |format|
+            format.js { render inline: "location.reload();" }
+        end
     end
 
     def destroy
         @club = Club.find(params[:id])
         @user.unfollow!(@club)
-        redirect_to club_path(@club)
+        respond_to do |format|
+            format.js { render inline: "location.reload();" }
+        end 
     end
 
     private
