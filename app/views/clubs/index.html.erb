@@ -4,4 +4,10 @@
 <%# 4. Allow users to create a club %>
 <%# 5. Allow users to suggest one book %>
 
+<% @clubs.each do |club| %>
+    <%= link_to club.name, club_path(club) %>
+    <%= link_to_toggle_club_follow club %>
+
+<% end %>
+
 <%= link_to "Create A New Club", new_club_path %>
