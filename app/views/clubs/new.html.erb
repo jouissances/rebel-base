@@ -16,8 +16,10 @@
 
   <%= f.input :name %>
 
-  <%= f.input :genre %>
+  <%= f.input :genre, collection: ["Science Fiction", "Fantasy", "Adventure", "Mystery", "Drama", "Romance", "Action", "Satire", "Horror", "Comedy", "YA Fiction", "Dystopia", "Thriller", "Classic", "Crime", "Historical", "Non-fiction" ] %>
 
+  <%= f.input :subgenre, as: :string, required: false %>
+  
   <%= f.input :description, as: :string %>
 
   <%= f.button :submit, class: "btn-primary" %>
