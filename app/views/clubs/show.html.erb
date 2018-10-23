@@ -7,24 +7,29 @@
 <%# 7. Guide users on how to start a discussion thread %>
 <%# 8. Allow users to participate in existing discussion thread, regardless of clubs %>
 <%# 9. Add a sticky code of conduct sidebar %>
-
-<h1><%= @club.name %></h1>
-<p><%= @club.genre %></p>
+<%= image_tag @club.cover_image.cover.url if @club.cover_image.url %>
 
 <div class="club">
-    <%= link_to_toggle_club_follow @club %>
+
+    <h1><%= @club.name %></h1>
+    <p><%= @club.description %></p>
+
+    <p><%= @club.genre %></p>
+    <p><%= @club.subgenre %></p>
+
+    <div class="club">
+        <%= link_to_toggle_club_follow @club %>
+        <%= pluralize(@club.followers_count, "Follower") %>
+    </div>
+
+    <%= render "shelf" %>
+
+    <% if @club.memberships.find_by_user_id(current_user.id).admin == true %>
+
+        <%= button_to "Edit Club", edit_club_path, method: "get", class: "btn btn-primary btn-md" %>
+
+        <%= button_to 'Delete Club', { :controller => :clubs, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md", data: { :confirm => 'Are you sure?' } %>
+
+    <% end %>
+
 </div>
-
-<p><%= pluralize(@club.followers_count, "Follower") %></p>
-
-<p><%= @club.description %></p>
-
-<%= link_to "See Shelf", club_shelf_path(@shelf) %>
-
-<% if @club.memberships.find_by_user_id(current_user.id).admin == true %>
-
-    <%= button_to "Edit Club", edit_club_path, method: "get", class: "btn btn-primary btn-md" %>
-
-    <%= button_to 'Delete Club', { :controller => :clubs, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md", data: { :confirm => 'Are you sure?' } %>
-
-<% end %>

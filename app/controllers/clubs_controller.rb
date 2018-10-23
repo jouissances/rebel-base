@@ -2,6 +2,10 @@ class ClubsController < ApplicationController
 
     before_action :set_user, except: [:index, :show]
 
+    def index
+        @clubs = Club.all
+    end
+
     def new
         @club = Club.new
     end
@@ -30,6 +34,9 @@ class ClubsController < ApplicationController
     def show
         @club = Club.find(params[:id])
         @shelf = @club.shelf
+        @current_book = Book.find(@shelf.current_book) if @shelf.current_book
+        @upcoming_books = @shelf.upcoming_books.map { |book| Book.find(book) }
+        @read_books = @shelf.read_books.map { |book| Book.find(book) }
     end
 
     def edit
@@ -44,7 +51,7 @@ class ClubsController < ApplicationController
     end
 
     def update
-        @club = Club.find(params[:id])        
+        @club = Club.find(params[:id])
         if @club.update!(club_params)
             flash[:success] = "The club is successfully edited."
             redirect_to @club
@@ -62,7 +69,7 @@ class ClubsController < ApplicationController
     private
 
     def club_params
-        params.require(:club).permit(:name, :genre, :description)
+        params.require(:club).permit(:name, :genre, :subgenre, :description, :club_image, :cover_image)
     end
 
     def set_user
