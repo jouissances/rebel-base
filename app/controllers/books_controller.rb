@@ -2,6 +2,7 @@ class BooksController < ApplicationController
     before_action :authenticate_user!, except: [:index, :home]
 
     def new
+        # Searches for books to add to upcoming shelf
         @book = Book.new
         if params[:search].present? and params[:search].length > 3
             @books = GoogleBooks::API.search("#{params[:search].downcase}", { :count => 30 })
@@ -9,8 +10,9 @@ class BooksController < ApplicationController
     end
 
     def create
+        # Add book to upcoming shelf
         isbn = params[:isbn]
-        added_book = GoogleBooks::API.search(isbn).first
+        added_book = GoogleBooks::API.search("isbn:#{isbn}").first
 
         @book = Book.new
         @book.title = added_book.title
@@ -48,12 +50,23 @@ class BooksController < ApplicationController
     end
 
     def show
+        # Show book details when it's already added on the shelf (instantiated)
         @book = Book.find(params[:id])
         @shelf = Shelf.find(params[:shelf_id])
+
+        @current_book = @shelf.current_book
+        @upcoming_books = @shelf.upcoming_books
+
+        @club = Club.find(params[:club_id])
+        @discussion = Discussion.new
+        @discussions = Discussion.all
+
+        @comment = Comment.new
     end
 
     def set_as_current
-        # Move book from upcoming books collection to current.
+        # Set a new reading for a particular book
+        # Move book from upcoming books collection to current
         @shelf = Shelf.find(params[:shelf_id])
         @book = Book.find(params[:id])
         
@@ -66,7 +79,7 @@ class BooksController < ApplicationController
     end
 
     def update
-        # Move book from current slot to read books collection.
+        # Finish reading and move book from current slot to read books collection
         @shelf = Shelf.find(params[:shelf_id])
         @book = Book.find(params[:id])
         
@@ -79,6 +92,7 @@ class BooksController < ApplicationController
     end
 
     def destroy
+        # Remove book from all lists altogether
         @book = Book.find(params[:id]).destroy
         @shelf = Shelf.find(params[:shelf_id])
 
