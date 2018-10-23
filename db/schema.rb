@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_060314) do
+ActiveRecord::Schema.define(version: 2018_10_22_112044) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -27,12 +27,17 @@ ActiveRecord::Schema.define(version: 2018_10_17_060314) do
     t.string "genre"
     t.text "description"
     t.integer "followers_count", default: 0
+    t.string "subgenre"
+    t.string "club_image"
+    t.string "cover_image"
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "discussion_id"
     t.integer "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["discussion_id"], name: "index_comments_on_discussion_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -42,8 +47,10 @@ ActiveRecord::Schema.define(version: 2018_10_17_060314) do
     t.text "body"
     t.text "book_quote"
     t.integer "user_id"
-    t.integer "reading_id"
-    t.index ["reading_id"], name: "index_discussions_on_reading_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "book_id"
+    t.index ["book_id"], name: "index_discussions_on_book_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
@@ -83,16 +90,6 @@ ActiveRecord::Schema.define(version: 2018_10_17_060314) do
     t.datetime "created_at"
     t.index ["mentionable_id", "mentionable_type"], name: "fk_mentionables"
     t.index ["mentioner_id", "mentioner_type"], name: "fk_mentions"
-  end
-
-  create_table "readings", force: :cascade do |t|
-    t.datetime "date_time"
-    t.integer "book_id"
-    t.integer "club_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_readings_on_book_id"
-    t.index ["club_id"], name: "index_readings_on_club_id"
   end
 
   create_table "shelves", force: :cascade do |t|
