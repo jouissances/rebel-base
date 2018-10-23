@@ -7,7 +7,6 @@
     <% @books.each do |book| %>
         <img src=<%= book.covers[:small] %>>
         <strong><%= book.title %></strong>
-        <%= book.isbn_10 %>
         By: <%= book.authors.join(', ') %>
         Rating: <%= book.average_rating ? book.average_rating : "N/A" %>
         <%= link_to( "Add Book To Shelf", club_shelf_books_path(:action => "create", :isbn => book.isbn_10), :method => :post) %>
