@@ -1,0 +1,39 @@
+<h2>Discussions</h2>
+
+<% if @book.discussions.empty? %>
+    There are no discussions yet.    
+<% else %>
+    <% @book.discussions.each do |d| %>
+        <strong><%= d.title %></strong>
+        <%= d.book_quote if d.book_quote %>
+        <%= d.body %>
+                Written by <%= d.user == current_user ? "you" : d.user.first_name %> <%= time_ago_in_words(d.created_at) %> ago
+
+        <% if d.user == current_user %>
+            <%= link_to "Edit", edit_club_shelf_book_discussion_path(@club, @shelf, @book, :discussion_id => d.id)%>
+            <%= link_to "Delete", club_shelf_book_discussion_destroy_path(@club, @shelf, @book, :discussion_id => d.id), :method => :delete %>
+        <% end %>
+
+        <%= form_for [@club, @shelf, @book, Discussion.find(d.id), @comment] do |f| %>
+            <%= f.text_area :body, class: "form-control", rows: "1", placeholder: "Write a comment..." %>
+            <%= f.submit "Post Comment", class: "btn btn-md btn-primary", style: "margin-top: 3px" %>
+        <% end %>
+
+        <%= pluralize(d.comments.count, "comment") %>
+        
+        <% if d.comments.any? %>
+            <% d.comments.each do |comment| %>
+                <% if comment.user == current_user or admin == true %>
+                    <%= link_to "Delete", club_shelf_book_discussion_comment_destroy_path(@club, :book_id => params[:id], :discussion_id => d.id, :comment_id => comment.id), :method => :delete %>
+                <% end %>
+                <%= time_ago_in_words(comment.created_at) %> ago
+                <%= comment.user.first_name %> says:
+            <%= comment.body %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>
+
+<hr>
+
+
