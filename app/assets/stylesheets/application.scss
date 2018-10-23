@@ -1,14 +1,17 @@
 $theme-colors: ( "bootstrap": #563d7c, "simpleform": #00617f );
 @import "bootstrap";
+@import "clubs";
 
 // simple_form helpers
 @import "simple_form-bootstrap/simple_form-bootstrap";
 
-/* @font-face {
+@font-face {
     font-family: 'Maison Neue';
     font-weight: 200;
     src: url('../fonts/MaisonNeue-Book.ttf');
 }
+
+// This file contains CSS for the static pages, as well as application.html.erb layout that is used throughout the website.
 
 * {
     font-family: 'Maison Neue';
@@ -97,10 +100,22 @@ form {
 
 footer {
     position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 98vw;
     bottom: 0;
     left: 15px;
 }
 
-footer p {
-    font-size: 10px;
-} */
+    footer p {
+        font-size: 10px;
+    }
+
+    footer div.social {
+        position: relative;
+        padding-right: 15px;
+    }
+
+    footer div.social a {
+        padding-left: 5px;
+    }
