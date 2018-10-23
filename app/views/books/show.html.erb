@@ -13,7 +13,7 @@
 <%# 10. Add request e-book details — https://support.google.com/books/partner/answer/3289675?hl=en %>
 <%# 11. Allow filtering of cards for specific clubs %>
 
-<%= link_to "Back to Shelf", club_shelf_path(:club_id => params[:club_id], :id => params[:shelf_id]) %>
+<%= link_to "Back to Club", club_path(@club) %>
 
 <h1><%= @book.title %></h1>
 <%= image_tag @book.image %>
@@ -21,10 +21,8 @@
 <p><%= @book.isbn %></p>
 <p><%= @book.author %></p>
 
-<% if @book.id.to_s == @shelf.current_book %>
-        <%= link_to "Finish Reading", { :controller => :books, :action => 'update' }, method: "patch", class: "btn btn-success btn-md" %>
-<% else %>
-        <%= link_to "Set As Current Book", set_as_current_club_shelf_book_path(:id => @book.id), method: "patch", class: "btn btn-success btn-md", remote: true %>
-<% end %>
+<%= render "options" %>
 
-<%= link_to "Remove Book",  { :controller => :books, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md" %>
+<%= render "discussions_and_comments" unless @upcoming_books.include?(@book.id) %>
+
+<%= render "discussion_form" if @book.id.to_s == @current_book %>
