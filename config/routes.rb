@@ -9,6 +9,12 @@ Rails.application.routes.draw do
         member do
           patch :set_as_current
         end
+        resources :discussions do
+          delete "destroy"
+          resources :comments do
+            delete "destroy"
+          end
+        end
       end
     end
   end
@@ -16,7 +22,6 @@ Rails.application.routes.draw do
   resources :memberships
   resources :discussions
   resources :comments
-  resources :readings
 
   get '/about', to: 'static#about'
 
