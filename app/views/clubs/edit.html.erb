@@ -1,14 +1,14 @@
-<h1>Edit Club</h1>
+<h1 class="title center">Edit Club</h1>
 
 <%= simple_form_for @club, 
   wrapper: :floating_labels_form,
-  defaults: { input_html: { style: 'height: 50px' } } do |f| %>
+  defaults: { input_html: { style: 'height: 60px' } } do |f| %>
 
   <%= f.error_notification %>
 
   <%= f.input :name %>
 
-  <%= f.input :genre, collection: ["Science Fiction", "Fantasy", "Adventure", "Mystery", "Drama", "Romance", "Action", "Satire", "Horror", "Comedy", "YA Fiction", "Dystopia", "Thriller", "Classic", "Crime", "Historical", "Non-fiction" ] %>
+  <%= f.input :genre, collection: ["Action", "Adventure", "Classic", "Comedy", "Crime", "Drama", "Dystopia", "Fantasy", "General", "Historical", "Horror", "Mystery", "Non-fiction", "Romance", "Satire", "Sci-Fi", "Tech", "Thriller", "YA Fiction" ], label_html: { class: 'style-label' } %>
 
   <%= f.input :subgenre, as: :string, required: false %>
 
