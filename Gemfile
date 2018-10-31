@@ -36,6 +36,7 @@ gem 'google_books'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'libri'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
