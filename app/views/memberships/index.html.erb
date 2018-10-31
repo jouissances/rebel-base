@@ -1,7 +1,12 @@
 <h1>Your Clubs</h1>
 
-<% @clubs.each do |club| %>
-    <%= link_to club.name, club_path(club) %>
+<% if @clubs.empty? %>
+    You haven't joined any clubs yet. Why not start your own?
+<% else %>
+    <% @clubs.each do |club| %>
+        <%= link_to club.name, club_path(club) %>
+    <% end %>
 <% end %>
 
-<%= link_to "Create A New Club", new_club_path %>
+
+<%= button_to "Create A New Club", new_club_path, { method: 'get', class: "btn btn-primary" } %>
