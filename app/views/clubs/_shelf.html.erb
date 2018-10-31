@@ -1,23 +1,43 @@
 <h2>Current Book</h2>
-<% if @current_book %>
-    <%= @current_book.image %>
-    <%= link_to @current_book.title, club_shelf_book_path(:club_id => params[:id], :shelf_id => @current_book.shelf_id, :id => @current_book.id ) %>
-<% end %>
-
-<h2>Upcoming Books</h2>
-<% if @shelf.upcoming_books %>
-    <% @upcoming_books.each do |book| %>
-        <%= book.image %>
-        <%= link_to book.title, club_shelf_book_path(:club_id => params[:id], :shelf_id => book.shelf_id, :id => book.id ) %>
+    <% if @current_book %>
+        <div class="book-grid-wrapper">
+            <div class="book-grid">
+                <%= image_tag @current_book.image %>
+                <p><%= link_to @current_book.title, club_shelf_book_path(:club_id => params[:id], :shelf_id => @current_book.shelf_id, :id => @current_book.id ) %></p>
+            </div>
+        </div>
+    <% else %>
+            <p>This club is currently not reading.</p>
     <% end %>
+
+<div class="inline">
+    <h2>Upcoming Books</h2>
+    <%= button_to "Add a Book", { :action => "new", :controller => "books", :club_id => params[:id], :shelf_id => @shelf.id }, :class => "btn btn-primary", :method => "get" %>
+</div>
+
+<% if !@shelf.upcoming_books.empty? %>
+    <div class="book-grid-wrapper">
+        <% @upcoming_books.each do |book| %>
+            <div class="book-grid">
+                <%= image_tag book.image %>
+                <p><%= link_to book.title, club_shelf_book_path(:club_id => params[:id], :shelf_id => book.shelf_id, :id => book.slug ) %></p>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+        <p>This club has no upcoming books to read.</p>
 <% end %>
 
 <h2>Read Books</h2>
-<% if @shelf.read_books %>
-    <% @read_books.each do |book| %>
-        <%= book.image %>
-        <%= link_to book.title, club_shelf_book_path(:club_id => params[:id], :shelf_id => book.shelf_id, :id => book.id ) %>
-    <% end %>
+<% if !@shelf.read_books.empty? %>
+    <div class="book-grid-wrapper">
+        <% @read_books.each do |book| %>
+            <div class="book-grid">
+                <%= image_tag book.image %>
+                <p><%= link_to book.title, club_shelf_book_path(:club_id => params[:id], :shelf_id => book.shelf_id, :id => book.id ) %></p>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+    <p>This club has not finished reading any book yet.</p>
 <% end %>
-
-<p><%= link_to "Add a Book", { :action => "new", :club_id => params[:id], :controller => "books", :shelf_id => params[:id] } %></p>
