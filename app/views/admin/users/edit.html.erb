@@ -1,15 +1,33 @@
-<%= form_for ([:admin, @user]) do |f| %>
-    First name: <%= f.text_field :first_name %><br />
-    Last name: <%= f.text_field :last_name %><br />
-    Location: <%= f.text_field :location %><br />
-    Biography: <%= f.text_area :bio %><br />
+<h1 class="title center">Edit User Profile</h1>
 
-    Twitter: <%= f.text_field :twitter %><br />
-    Facebook: <%= f.text_field :facebook %><br />
-    Instagram: <%= f.text_field :instagram %><br />
+<%= simple_form_for ([:admin, @user]), 
+  wrapper: :floating_labels_form,
+  defaults: { input_html: { style: 'height: 32px' } } do |f| %>
 
-    Slack: <%= f.text_field :slack %><br />
+  <%= f.error_notification %>
 
-    <%= f.submit %>
+  <%= f.input :username, required: true %>
 
+  <%= f.input :first_name, required: true %>
+
+  <%= f.input :last_name, required: true %>
+  
+  <%= f.input :bio %>
+  
+  <div class="form-label-group select optional user_location">
+    <%= f.country_select :location, {}, {include_blank: 'Select a country', class: 'form-control select optional'} %>
+    <%= f.label :location, class: 'style-label' %>
+  </div>
+
+  <%= f.input :twitter %>
+  
+  <%= f.input :facebook %>
+  
+  <%= f.input :instagram %>
+
+  <%= f.input :slack %>
+
+  <%= f.input :image, label: 'Profile Image' %>
+
+  <%= f.button :submit, class: "btn-primary" %>
 <% end %>
