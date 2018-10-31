@@ -7,7 +7,7 @@ class MembershipsController < ApplicationController
     end
 
     def new
-        @club = Club.find(params[:club_id])
+        @club = Club.friendly.find(params[:club_id])
         if @user.follows?(@club) == true
             flash[:notice] = "You have already joined #{@club.name}."
             redirect_to memberships_path
@@ -21,7 +21,7 @@ class MembershipsController < ApplicationController
     end
 
     def update
-        @club = Club.find(params[:id])
+        @club = Club.friendly.find(params[:id])
         @user.follow!(@club)
         respond_to do |format|
             format.js { render inline: "location.reload();" }
@@ -29,7 +29,7 @@ class MembershipsController < ApplicationController
     end
 
     def destroy
-        @club = Club.find(params[:id])
+        @club = Club.friendly.find(params[:id])
         @user.unfollow!(@club)
         respond_to do |format|
             format.js { render inline: "location.reload();" }

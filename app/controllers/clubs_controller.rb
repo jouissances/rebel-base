@@ -1,6 +1,6 @@
 class ClubsController < ApplicationController
 
-    before_action :set_user, except: [:index, :show]
+    before_action :authenticate_user!, except: [:index]
 
     def index
         @clubs = Club.all
@@ -17,9 +17,9 @@ class ClubsController < ApplicationController
             @shelf = Shelf.create(:club_id => @club.id)
             @membership = Membership.create(:user_id => current_user.id, :club_id => @club.id)
             current_user.follow!(@club)
-            membership = @club.memberships.find_by_user_id(current_user.id)
-            membership.admin = true
-            membership.save!
+            @membership_status = @club.memberships.find_by_user_id(current_user.id)
+            @membership_status.admin = true
+            @membership_status.save!
             redirect_to @club
         else
             if @club.errors.any?
@@ -32,7 +32,10 @@ class ClubsController < ApplicationController
     end
 
     def show
-        @club = Club.find(params[:id])
+        @club = Club.friendly.find(params[:id])
+        @user = current_user
+        @membership_status = @club.memberships.find_by_user_id(current_user.id)
+        @followers = @club.followers(User)
         @shelf = @club.shelf
         @current_book = Book.find(@shelf.current_book) if @shelf.current_book
         @upcoming_books = @shelf.upcoming_books.map { |book| Book.find(book) }
@@ -40,7 +43,7 @@ class ClubsController < ApplicationController
     end
 
     def edit
-        @club = Club.find(params[:id])
+        @club = Club.friendly.find(params[:id])
         membership = @club.memberships.find_by_user_id(current_user.id)
         if membership.admin = true
             render 'edit'
@@ -51,7 +54,7 @@ class ClubsController < ApplicationController
     end
 
     def update
-        @club = Club.find(params[:id])
+        @club = Club.friendly.find(params[:id])
         if @club.update!(club_params)
             flash[:success] = "The club is successfully edited."
             redirect_to @club
@@ -62,7 +65,8 @@ class ClubsController < ApplicationController
     end
 
     def destroy
-        @club = Club.find(params[:id]).destroy
+        @club = Club.friendly.find(params[:id])
+        @club.destroy
         redirect_to memberships_path
     end
  

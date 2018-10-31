@@ -19,7 +19,8 @@ class BooksController < ApplicationController
         @book.description = added_book.description
         @book.author = added_book.authors.join(", ")
         @book.isbn = added_book.isbn_10
-        @book.image = added_book.covers[:medium]
+        @book.image = added_book.covers[:small]
+        @book.image_large = added_book.covers[:extra_large]
         @book.shelf_id = params[:shelf_id]
         @book.save
 
@@ -51,13 +52,15 @@ class BooksController < ApplicationController
 
     def show
         # Show book details when it's already added on the shelf (instantiated)
-        @book = Book.find(params[:id])
+        @book = Book.friendly.find(params[:id])
         @shelf = Shelf.find(params[:shelf_id])
 
         @current_book = @shelf.current_book
         @upcoming_books = @shelf.upcoming_books
 
-        @club = Club.find(params[:club_id])
+        @club = Club.friendly.find(params[:club_id])
+        @membership_status = @club.memberships.find_by_user_id(current_user.id)
+
         @discussion = Discussion.new
         @discussions = Discussion.all
 
@@ -68,33 +71,39 @@ class BooksController < ApplicationController
         # Set a new reading for a particular book
         # Move book from upcoming books collection to current
         @shelf = Shelf.find(params[:shelf_id])
-        @book = Book.find(params[:id])
+        @book = Book.friendly.find(params[:id])
+
+        club = Club.friendly.find(params[:club_id])
         
         upcoming_books = @shelf.upcoming_books
         new_upcoming_id_list = upcoming_books - [@book.id]
         
         @shelf.update_column(:upcoming_books, new_upcoming_id_list)
         @shelf.update_column(:current_book, @book.id)
-        redirect_to club_shelf_path(:club_id => params[:club_id], :id => params[:shelf_id])
+        redirect_to club_path(club)
     end
 
     def update
         # Finish reading and move book from current slot to read books collection
         @shelf = Shelf.find(params[:shelf_id])
-        @book = Book.find(params[:id])
+        @book = Book.friendly.find(params[:id])
         
+        club = Club.friendly.find(params[:club_id])
+
         read_books = @shelf.read_books
         new_read_id_list = read_books.push(@book.id)
         
         @shelf.update_column(:current_book, nil)
         @shelf.update_column(:read_books, new_read_id_list)
-        redirect_to club_shelf_path(:club_id => params[:club_id], :id => params[:shelf_id])
+        redirect_to club_path(club)
     end
 
     def destroy
         # Remove book from all lists altogether
-        @book = Book.find(params[:id]).destroy
+        @book = Book.friendly.find(params[:id]).destroy
         @shelf = Shelf.find(params[:shelf_id])
+
+        club = Club.friendly.find(params[:club_id])
 
         read_books = @shelf.read_books
         read_books.each do |book|
@@ -114,7 +123,7 @@ class BooksController < ApplicationController
 
         @shelf.update_column(:current_book, nil) if @shelf.current_book == @book.id.to_s
 
-        redirect_to club_shelf_path(:club_id => params[:club_id], :id => params[:shelf_id])
+        redirect_to club_path(club)
     end
 
     private

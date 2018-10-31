@@ -2,7 +2,7 @@ class DiscussionsController < ApplicationController
     before_action :authenticate_user!
 
     def create
-        @book = Book.find(params[:book_id])
+        @book = Book.friendly.find(params[:book_id])
         @discussion = @book.discussions.create(discussion_params)
         @discussion.user_id = current_user.id
         
@@ -16,8 +16,8 @@ class DiscussionsController < ApplicationController
     end
 
     def edit
-        @club = Club.find(params[:club_id])
-        @book = Book.find(params[:book_id])
+        @club = Club.friendly.find(params[:club_id])
+        @book = Book.friendly.find(params[:book_id])
         @shelf = Shelf.find(params[:shelf_id])
         @discussion = Discussion.find(params[:discussion_id])
     end
