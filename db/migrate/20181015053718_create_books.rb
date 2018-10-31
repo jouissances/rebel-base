@@ -6,7 +6,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.text "description"
       t.string "isbn"
       t.string "image"
-      t.belongs_to :shelf, foreign_key: true
+      t.belongs_to :shelf, foreign_key: {on_delete: :cascade}
     end
   end
 end

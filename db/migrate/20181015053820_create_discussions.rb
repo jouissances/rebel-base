@@ -4,8 +4,7 @@ class CreateDiscussions < ActiveRecord::Migration[5.2]
       t.string "title"
       t.text "body"
       t.text "book_quote"
-      t.belongs_to :user, foreign_key: true
-      t.belongs_to :reading, foreign_key: true
+      t.belongs_to :user, foreign_key: {on_delete: :cascade}
     end
   end
 end
