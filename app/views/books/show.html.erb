@@ -15,13 +15,20 @@
 
 <%= link_to "Back to Club", club_path(@club) %>
 
-<h1><%= @book.title %></h1>
-<%= image_tag @book.image %>
-<p><%= @book.description %></p>
-<p><%= @book.isbn %></p>
-<p><%= @book.author %></p>
+<div class="book-wrapper">
+        <div class="left">
+                <h1><%= link_to @book.title, @book.link %></h1>
+                <p>by <i><%= @book.author %></i></p>
+                <p><%= @book.description %></p>
 
-<%= render "options" %>
+                <%= render "options" %>
+
+        </div>
+
+        <div class="right">
+                <%= image_tag @book.image_large %>
+        </div>
+</div>
 
 <%= render "discussions_and_comments" unless @upcoming_books.include?(@book.id) %>
 
