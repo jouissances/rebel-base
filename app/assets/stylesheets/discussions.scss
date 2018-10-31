@@ -1,3 +1,57 @@
 // Place all the styles related to the Discussions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div.discussions h2,
+div.discussion-form h2,
+div.discussion-form .btn,
+div.comment-form .btn {
+    margin-top: 3vh !important;
+}
+
+div.comment-form .btn {
+    margin-bottom: 3vh;
+}
+
+div.discussion-form textarea {
+    font-size: 14px;    
+    height: 35px !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-top: 0;
+}
+
+div.comment {
+    margin-bottom: 3vh;
+}
+
+div.discussion a,
+div.comment a {
+    margin: 0 5px;
+}
+
+div.block {
+    line-height: 1.5;
+    width: 100%;
+    padding: 3vh 2vw;
+    margin-bottom: 3vh;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in;
+}
+
+div.block:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+div.discussion h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+div.comment-form textarea {
+    height: 35px !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-top: 0;
+}

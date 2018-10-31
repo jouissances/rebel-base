@@ -1,3 +1,81 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+form input#search {
+    margin-bottom: 1rem;
+}
+
+div.search-results-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin-top: 3vh;
+}
+
+div.search-result {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 3vh;
+}
+
+div.search-result img {
+    width: 175px;
+    height: 250px;
+}
+
+div.search-result h3 {
+}
+
+div.search-result p {
+    margin: 0;
+}
+
+div.search-result a {
+    margin-right: 0;
+}
+
+div.search-bar .btn,
+div.search-result .btn {
+    margin: 5px 0;
+}
+
+div.book-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 50px;
+    align-items: center;
+    text-align: center;
+    height: auto;
+}
+
+div.book-wrapper img {
+    height: 80vh;
+}
+
+div.book-wrapper div.left {
+    grid-column: 1 / 4;
+    text-align: left;
+}
+
+div.book-wrapper div.right {
+    grid-column: 4;
+    text-align: left;
+}
+
+div.book-wrapper h1 {
+    margin-top: 3vh;
+}
+
+div.book-wrapper h1 a {
+    font-size: 32px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+div.buttons {
+    margin-top: 3vh;
+}
+
+div.buttons a {
+    text-decoration: none;
+}

@@ -1,3 +1,76 @@
 // Place all the styles related to the Admin/Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.profile-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 150px 100px 200px;
+    grid-column-gap: 50px;
+    padding: 2vh 5vw 8vh 5vw;
+}
+
+div.profile-wrapper img {
+    border-radius: 50%;
+    height: 150px;
+    margin: 0 auto;
+}
+
+div.profile-wrapper div.primary-profile {
+    text-align: center;
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+    padding-bottom: 3vh;
+}
+
+div.profile-wrapper div.primary-profile img {
+    margin: 2vh 0;
+}
+
+div.profile-wrapper div.secondary-profile {
+    grid-column: 1 / 3;
+    grid-row: 3;
+}
+
+div.profile-wrapper div.secondary-profile h2,
+div.profile-wrapper div.social h2 {
+    margin-top: 5vh;
+}
+
+div.profile-wrapper div.social {
+    grid-column: 3 / 5;
+    grid-row: 3;
+}
+
+div.profile-wrapper div.social a i {
+    font-size: 14px;
+}
+
+div.user_image {
+    display: flex;
+    justify-content: center;
+}
+
+#user_image {
+    width: auto;
+    margin-left: 15px;
+}
+
+#user_location {
+    height: 50px;
+}
+
+#user_bio {
+    height: 80px !important;
+}
+
+label.style-label {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+input {
+    text-align: right;
+    margin-right: 5px;
+    padding: 0.25rem 1.5rem !important;
+}

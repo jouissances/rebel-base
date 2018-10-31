@@ -1,12 +1,196 @@
 // Place all the styles related to the clubs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+section.content a {
+    margin-right: 2vw;
+}
+
+div.club-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 50px;
+    margin: 3vh 0 3vh 5vw;
+}
 
 div.club {
-    padding: 3vh 5vw;
+    grid-column: 1 / 5;
+    position: relative;
 }
 
 div.club h1 {
     font-size: 36px;
     font-weight: 700;
+}
+
+div.tags {
+    display: flex;
+}
+
+div.tags p.tag {
+    padding: 3px 15px;
+    border-radius: 10px;
+    font-family: 'Maison Neue';
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+div.tags p.genre {
+    background-color: navy;
+    color: white;
+}
+
+div.tags p.action {
+    background-color: blue;
+}
+
+div.tags p.adventure {
+    background-color: seagreen;
+}
+
+div.tags p.classic {
+    background-color: #ddbbbb;
+    color: #333333;
+}
+
+div.tags p.comedy {
+    background-color: yellow;
+    color: #333333;
+}
+
+div.tags p.crime {
+    background-color: maroon;
+}
+
+div.tags p.drama {
+    background-color: salmon;
+    color: #333333;
+}
+
+div.tags p.dystopia {
+    background-color: purple;
+}
+
+div.tags p.fantasy {
+    background-color: deepskyblue;
+}
+
+div.tags p.historical {
+    background-color: sienna;
+}
+
+div.tags p.horror {
+    background-color: darkslategray;
+}
+
+div.tags p.mystery {
+    background-color: black;
+}
+
+div.tags p.non-fiction {
+    background-color: lavenderblush;
+    color: #333333;
+}
+
+div.tags p.romance {
+    background-color: mediumvioletred;
+}
+
+div.tags p.satire {
+    background-color: #FF8020;
+}
+
+div.tags p.sci-fi {
+    background-color: silver;
+    color: #333333;
+}
+
+div.tags p.tech {
+    background-color: #FF8020;
+}
+
+div.tags p.thriller {
+    background-color: #8d9092;
+    color: #333333;
+}
+
+div.tags p.ya-fiction {
+    background-color: #ACE1AF;
+    color: #333333;
+}
+
+div.shelf-wrapper {
+    padding: 3vh 0;
+}
+
+div.shelf-wrapper div.inline {
+    display: flex;
+    align-items: center;
+}
+
+div.shelf-wrapper h2 {
+    margin: 10px 15px 5px 0;
+}
+
+div.book-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 3vh;
+}
+
+div.book-grid {
+    text-align: center;
+    margin-top: 3vh;
+}
+
+div.book-grid img {
+    height: 200px;
+    width: 140px;
+}
+
+div.book-grid a {
+    margin-right: 0;
+}
+
+div.book-grid p a {
+    display: inline-block;
+    margin: 5px 0;
+}
+
+div.code-of-conduct {
+    grid-column: 5 / 7;
+    border-left: 1px solid #cccccc;
+    padding-left: 2vw;
+    margin-right: 0;
+}
+
+div.code-of-conduct h1 {
+    font-family: 'Px Grotesk';
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+div.code-of-conduct p {
+    font-family: 'Px Grotesk';
+}
+
+
+div.club_club_image,
+div.club_cover_image {
+    display: flex;
+    justify-content: center;
+}
+
+#club_club_image,
+#club_cover_image {
+    width: auto;
+    margin-left: 15px;
+}
+
+div.follow-details a {
+    margin: 0 5px;
+}
+
+div.follow-details a.follow.btn {
+    text-decoration: none;
 }
