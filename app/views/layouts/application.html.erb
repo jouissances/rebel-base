@@ -12,11 +12,13 @@
 
   <body>
 
-    <%= render partial: 'layouts/header' %>
+    <%= render 'layouts/header' %>
 
-    <%= yield %>
+    <section class="content">
+      <%= yield %>
+    </section>
 
-    <%= render partial: 'layouts/footer' %>
+    <%= render 'layouts/footer' %>
 
   </body>
 </html>
