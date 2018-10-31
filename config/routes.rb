@@ -20,8 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :memberships
-  resources :discussions
-  resources :comments
 
   get '/about', to: 'static#about'
 
