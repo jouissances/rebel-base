@@ -1,10 +1,13 @@
 # 1. Confirm relationships are appropriate
 
 class Club < ApplicationRecord
+    extend FriendlyId
+    friendly_id :name, use: :slugged
+
     has_one :shelf, :dependent => :destroy
-    has_many :books, through: :shelf
-    has_many :discussions, through: :books
-    has_many :comments, through: :discussions
+    has_many :books, through: :shelf, :dependent => :destroy
+    has_many :discussions, through: :books, :dependent => :destroy
+    has_many :comments, through: :discussions, :dependent => :destroy
 
     has_many :memberships, :dependent => :destroy
     has_many :users, through: :memberships, :dependent => :destroy
