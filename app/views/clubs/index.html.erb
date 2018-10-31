@@ -4,10 +4,14 @@
 <%# 4. Allow users to create a club %>
 <%# 5. Allow users to suggest one book %>
 
-<% @clubs.each do |club| %>
-    <%= link_to club.name, club_path(club) %>
-    <%= link_to_toggle_club_follow club %>
-
+<% if @clubs.empty? %>
+    Oops! There are no clubs yet. Why not start your own?
+<% else %>
+    <% @clubs.each do |club| %>
+        <%= link_to club.name, club_path(club) %>
+        <%= link_to_toggle_club_follow club %>
+        <br>
+    <% end %>
 <% end %>
 
-<%= link_to "Create A New Club", new_club_path %>
+<%= button_to "Create A New Club", new_club_path, { method: 'get', class: "btn btn-primary" } %>
