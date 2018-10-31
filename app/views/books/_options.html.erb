@@ -1,9 +1,11 @@
-<% if @book.id.to_s == @shelf.current_book %>
-        <%= link_to "Finish Reading", { :controller => :books, :action => 'update' }, method: "patch", class: "btn btn-success btn-md" %>
-<% elsif @upcoming_books.include?(@book.id) %>
-        <%= link_to "Set As Current Book", set_as_current_club_shelf_book_path(:id => @book.id), method: "patch", class: "btn btn-success btn-md", remote: true %>
-<% else %>
-        <% nil %>
-<% end %>
+<div class="buttons">
+        <% if @membership_status && @membership_status.admin == true && @book.id.to_s == @shelf.current_book %>
+                <%= link_to "Finish Reading", { :controller => :books, :action => 'update' }, method: "patch", class: "btn btn-success btn-md" %>
+        <% elsif @membership_status && @membership_status.admin == true && @upcoming_books.include?(@book.id) %>
+                <%= link_to "Set As Current Book", set_as_current_club_shelf_book_path(:id => @book.id), method: "patch", class: "btn btn-success btn-md", remote: true %>
+        <% else %>
+                <% nil %>
+        <% end %>
 
-<%= link_to "Remove Book",  { :controller => :books, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md" %>
+        <%= link_to "Remove Book",  { :controller => :books, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md" %>
+</div>
