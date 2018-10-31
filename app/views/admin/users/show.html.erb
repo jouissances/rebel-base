@@ -1,40 +1,50 @@
 <%# 1. Add Slack link %>
 <%# 2. Add books read and clubs part of %>
+<div class="profile-wrapper">
 
-<%= image_tag "#{current_user.image}" %>
-<h1><%= "#{current_user.first_name} #{current_user.last_name}" %></h1>
+    <div class="primary-profile">
+        <%= image_tag @user.image.url %>
 
-<%= button_to "Edit profile", edit_admin_user_path, { method: 'get' } %>
+        <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
 
-<i class="fas fa-map-marker-alt"></i>
-<%= current_user.location %>
+        <i class="fas fa-map-marker-alt"></i>
+        <%= @user.country_name  %>
 
-<h2>Bio</h2>
-    <%= current_user.bio %>
+    </div>
 
-<h2>Find me on</h2>
-    <%= current_user.twitter %>
-    <%= current_user.facebook %>
-    <%= current_user.instagram %>
+    <div class="secondary-profile">
+        <h2>Bio</h2>
+            <%= @user.bio.nil? || @user.bio == "" ? "#{@quote} — #{@author}" : @user.bio  %>
+        
+        <h2>Clubs</h2>
+            <% if !@clubs.empty? %>
+                <% @clubs.each do |club| %>
+                    <div>
+                        <%= link_to club.name, club_path(club) %>
+                        <%= club.genre %>
+                    </div>
+                <% end %>
+            <% else %>
+                <% if  @user == current_user %>
+                    You have not joined any club yet. Start <%= link_to "here", clubs_path %>!
+                 <% else %>
+                    This user has not joined any club yet.
+                 <% end %>
+            <% end %>
+    </div>
+        
+    <div class="social">
 
-<h2>Let's chat on Slack</h2>
-    <%= current_user.slack %>
+        <h2>Find me on</h2>
+            <a href="https://twitter.com/<%= @user.twitter %>" > <i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/<%= @user.facebook %>"> <i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/<%= @user.instagram %>"> <i class="fab fa-instagram"></i></a>
 
-<h2>Clubs</h2>
-    <% @clubs.each do |club| %>
-        <div>
-            <%= club.name %>
-            <%= club.genre %>
-        </div>
-    <% end %>
+        <h2>Let's chat on Slack</h2>
+            <a href="https://rebelbasetalk.slack.com/team/<%= @user.slack %>"> <i class="fab fa-slack"></i></a>
 
-<h2>Shelf</h2>
-    <% current_user.books.each do |book| %>
-        <div>
-            <img src="" />
+    </div>
 
-            <%= book.title %>
-            <%= book.author %>
-            Reading with <%= book.shelf.club %>
-        </div>
-    <% end %>
+</div>
+
+<%= button_to "Edit profile", edit_admin_user_path, { method: 'get', class: 'btn btn-primary' } %>
