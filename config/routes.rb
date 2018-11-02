@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  resources :memberships
+
   resources :clubs do
     resources :shelves do
       resources :books do
@@ -18,8 +20,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :memberships
 
   get '/about', to: 'static#about'
 
