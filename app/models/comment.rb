@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
 
     acts_as_mentioner
 
+    validates :body, presence: {:message => 'cannot be blank, comment cannot be saved.'}
+
 end

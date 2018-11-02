@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   mount_uploader :image, AvatarUploader
 
+  validates :email, uniqueness: {:message => 'is already taken, user cannot be saved.' }
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
       u.username = auth['info']['name'].downcase.gsub(/\s+/, '')

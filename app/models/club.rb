@@ -21,7 +21,17 @@ class Club < ApplicationRecord
     validates_processing_of :club_image
     validates_processing_of :cover_image
     validate :image_size_validation
+
+    validates :name, presence: {:message => 'cannot be blank, club cannot be saved.'}
+    validates :genre, presence: {:message => 'cannot be blank, club cannot be saved.'}
+    validates :subgenre, presence: {:message => 'cannot be blank, club cannot be saved.'}
+    validates :description, presence: {:message => 'cannot be blank, club cannot be saved.'}
+
     
+    def self.categorize_by(genre)
+        Club.all.where(:genre => genre)
+    end
+
     private
 
     def image_size_validation
