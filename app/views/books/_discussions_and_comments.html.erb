@@ -26,7 +26,7 @@
                         <%= comment.user.first_name %> says:
                         <%= comment.body %>
 
-                        <% if comment.user == current_user or admin == true %>
+                        <% if comment.user == current_user || @membership_status.admin == true %>
                             <%= link_to "Delete", club_shelf_book_discussion_comment_destroy_path(@club, :book_id => params[:id], :discussion_id => d.id, :comment_id => comment.id), :method => :delete %>
                         <% end %>
                     </div>
