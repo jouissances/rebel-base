@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2018_10_26_072205) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
     t.text "description"
     t.string "isbn"
     t.string "image"
-    t.integer "shelf_id"
+    t.bigint "shelf_id"
     t.string "slug"
     t.string "link"
     t.string "image_large"
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 2018_10_26_072205) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.integer "discussion_id"
-    t.integer "user_id"
+    t.bigint "discussion_id"
+    t.bigint "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["discussion_id"], name: "index_comments_on_discussion_id"
@@ -50,10 +53,10 @@ ActiveRecord::Schema.define(version: 2018_10_26_072205) do
     t.string "title"
     t.text "body"
     t.text "book_quote"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "book_id"
+    t.bigint "book_id"
     t.index ["book_id"], name: "index_discussions_on_book_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
@@ -68,7 +71,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_072205) do
     t.index ["follower_id", "follower_type"], name: "fk_follows"
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
+  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
@@ -92,8 +95,8 @@ ActiveRecord::Schema.define(version: 2018_10_26_072205) do
 
   create_table "memberships", force: :cascade do |t|
     t.boolean "admin", default: false
-    t.integer "user_id"
-    t.integer "club_id"
+    t.bigint "user_id"
+    t.bigint "club_id"
     t.index ["club_id"], name: "index_memberships_on_club_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
@@ -112,7 +115,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_072205) do
     t.string "current_book"
     t.text "read_books"
     t.text "upcoming_books"
-    t.integer "club_id"
+    t.bigint "club_id"
     t.index ["club_id"], name: "index_shelves_on_club_id"
   end
 
@@ -141,4 +144,12 @@ ActiveRecord::Schema.define(version: 2018_10_26_072205) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "books", "shelves", on_delete: :cascade
+  add_foreign_key "comments", "discussions", on_delete: :cascade
+  add_foreign_key "comments", "users", on_delete: :cascade
+  add_foreign_key "discussions", "books", on_delete: :cascade
+  add_foreign_key "discussions", "users", on_delete: :cascade
+  add_foreign_key "memberships", "clubs", on_delete: :cascade
+  add_foreign_key "memberships", "users", on_delete: :cascade
+  add_foreign_key "shelves", "clubs", on_delete: :cascade
 end
