@@ -5,8 +5,8 @@ ruby '2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use sqlite3 as the database for Active Record — change to PostgreSQL for deployment
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -65,6 +65,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'guard', '~> 2.14', '>= 2.14.2'
   gem 'guard-livereload', '~> 2.5', require: false
+  gem 'sqlite3'
 end
 
 group :development do
