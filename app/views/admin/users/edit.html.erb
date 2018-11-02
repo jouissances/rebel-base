@@ -1,8 +1,8 @@
-<h1 class="title center">Edit User Profile</h1>
-
 <%= simple_form_for ([:admin, @user]), 
   wrapper: :floating_labels_form,
   defaults: { input_html: { style: 'height: 32px' } } do |f| %>
+
+  <h1 class="title center">Edit User Profile</h1>
 
   <%= f.error_notification %>
 
@@ -15,7 +15,7 @@
   <%= f.input :bio %>
   
   <div class="form-label-group select optional user_location">
-    <%= f.country_select :location, {}, {include_blank: 'Select a country', class: 'form-control select optional'} %>
+    <%= f.country_select :location, {}, { include_blank: 'Select a country', class: 'form-control select optional' } %>
     <%= f.label :location, class: 'style-label' %>
   </div>
 
