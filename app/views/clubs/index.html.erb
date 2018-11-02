@@ -3,15 +3,31 @@
 <%# 3. Allow users to view a club %>
 <%# 4. Allow users to create a club %>
 <%# 5. Allow users to suggest one book %>
+<h1 class="center">Club Index Page</h1>
 
 <% if @clubs.empty? %>
     Oops! There are no clubs yet. Why not start your own?
 <% else %>
-    <% @clubs.each do |club| %>
-        <%= link_to club.name, club_path(club) %>
-        <%= link_to_toggle_club_follow club %>
-        <br>
-    <% end %>
-<% end %>
+    <div class="grid-wrapper">
+        <% @genres.each do |genre| %>
+            <div class="tags grid">
+                <p class="genre tag <%= genre.downcase %> "><%= genre %></p>
 
-<%= button_to "Create A New Club", new_club_path, { method: 'get', class: "btn btn-primary" } %>
+                <div class="club-wrapper-box">
+                    <ul>
+                        <% @clubs.categorize_by(genre).each do |club| %>
+                            <% if club.nil? || club.name.nil? %>
+                                There is no club in this genre yet.
+                            <% else %>
+                                <li>
+                                    <%= link_to club.name, club_path(club) %>
+                                    <%# <%= link_to_toggle_club_follow club %>
+                                </li>                            
+                            <% end %>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        <% end %>
+    </div>
+<% end %>
