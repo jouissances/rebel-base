@@ -18,14 +18,15 @@
             <p class="subgenre tag"><%= @club.subgenre %></p>
         </div>
 
-        <p><%= @club.description %></p>
+        <p><%= @club.description %> <br/>
+        Admin: <%= link_to full_name(@admin), admin_user_path(@admin) %> </p>
 
         <div class="follow-details">
             <%= link_to_toggle_club_follow @club %>
-            <%= pluralize(@club.followers_count, "Follower") %>
+            <%= show_follower_count(@club) %>
             
             <% @followers.each do |follower| %>
-                <%= link_to "#{follower.first_name} #{follower.last_name}", admin_user_path(follower) %>
+                <%= link_to full_name(follower), admin_user_path(follower) %>
                 <%=  %>
             <% end %>
         </div>
@@ -35,14 +36,10 @@
         </div>
 
         <div class="buttons">
-            <% if !@membership_status.nil? %>
-                <% if @membership_status.admin == true %>
+            <% if !@membership_status.nil? && @membership_status.admin == true %>
+                <%= button_to "Edit Club", edit_club_path, method: "get", class: "btn btn-primary btn-md" %>
 
-                    <%= button_to "Edit Club", edit_club_path, method: "get", class: "btn btn-primary btn-md" %>
-
-                    <%= button_to 'Delete Club', { :controller => :clubs, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md", data: { :confirm => 'Are you sure?' } %>
-
-                <% end %>
+                <%= button_to 'Delete Club', { :controller => :clubs, :action => 'destroy' }, method: "delete", class: "btn btn-danger btn-md", data: { :confirm => 'Are you sure?' } %>
             <% end %>
         </div>
 

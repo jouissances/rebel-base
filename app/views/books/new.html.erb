@@ -10,17 +10,11 @@
         <% @books.each do |book| %>
             <div class="search-result">
                 <%= link_to image_tag(book.covers[:small]), book.info_link if book.covers[:small] && book.info_link %>
-                <h3><strong>
-                    <% if book.info_link && book.title %>
-                        <%= link_to book.title.truncate(36), book.info_link %>
-                    <% elsif book.title %>
-                        <%= book.title.truncate(36) %>
-                    <% else %>
-                        Title Unavailable
-                    <% end %>
-                </strong></h3>
-                <p>By: <%= book.authors.join(', ').truncate(36) %></p>
+                
+                <h3><strong> <%= show_title(book) %> </strong></h3>
+                <p>By: <%= show_authors(book) %></p>
                 </p>Rating: <%= book.average_rating ? book.average_rating : "N/A" %></p>
+
                 <%= button_to  "Add Book To Shelf", club_shelf_books_path(:action => "create", :isbn => book.isbn_10), class: 'btn btn-primary' %>
             </div>
         <% end %>

@@ -30,25 +30,25 @@
 <section class="new-clubs">
     <h2 class="center">New Clubs</h2>
         <div class="club-grid-wrapper">
-            <% @clubs.last(3).each do |club| %>
+            <% new_clubs(@clubs).each do |club| %>
             
-                    <div class="club-grid">
-                        <%= image_tag(Book.find(club.shelf.current_book).image_large) if club.shelf.current_book %>
+                <div class="club-grid">
+                    <%= image_tag(Book.find(club.shelf.current_book).image_large) if club.shelf.current_book %>
 
-                        <p class="book-title"><%= link_to "#{Book.find(club.shelf.current_book).title} — #{Book.find(club.shelf.current_book).author}", club if club.shelf.current_book %> </p>
-                        
-                        <h1><%= link_to club.name, club %></h1>
+                    <p class="book-title"><%= link_to show_current_book_title_and_author(club), club_shelf_book_path(:id => club.shelf.current_book, :club_id => club.id, :shelf_id => club.shelf.id) if club.shelf.current_book %> </p>
+                    
+                    <h1><%= link_to club.name, club %></h1>
 
-                        <div class="tags">
-                            <p class="genre tag <%= club.genre.downcase %>"><%= club.genre %></p>
-                            <p class="subgenre tag"><%= club.subgenre %></p>
-                        </div>
-
-                        <p class="description"><%= club.description.truncate(100) %></p>
-
-                        <%= link_to "Join club", { :controller => "memberships", :action => "new", :user_id => session[:user_id], :club_id => club.id }, class: 'right' if current_user && !club.followed_by?(current_user)  %>
-
+                    <div class="tags">
+                        <p class="genre tag <%= club.genre.downcase %>"><%= club.genre %></p>
+                        <p class="subgenre tag"><%= club.subgenre %></p>
                     </div>
+
+                    <p class="description"><%= truncate_description(club) %></p>
+
+                    <%= link_to "Join club", { :controller => "memberships", :action => "new", :user_id => session[:user_id], :club_id => club.id }, class: 'right' if current_user && !club.followed_by?(current_user)  %>
+
+                </div>
                 
             <% end %>
         </div>
@@ -61,14 +61,15 @@
     <p class="center">We round up some of the most interesting discussions every week and feature them here.</p>
 
     <div class="discussions-wrapper">
-        <% @discussions.last(3).each do |discussion| %>
+        <% new_discussions(@discussions).each do |discussion| %>
             <div class="discussion-wrapper">
                 <%= image_tag discussion.book.image_large %>
-                <h3><%= link_to discussion.book.title, { :controller => "books", :action => "show", :id => discussion.book.id, :shelf_id => discussion.book.shelf.id, :club_id => discussion.book.club.id } %>
-                — <%= discussion.book.author %>
+                <h3>
+                    <%= link_to discussion.book.title, { :controller => "books", :action => "show", :id => discussion.book.id, :shelf_id => discussion.book.shelf.id, :club_id => discussion.book.club.id } %>
+                    — <%= discussion.book.author %>
                 </h3>
 
-                <p><i><%= discussion.book_quote if discussion.book_quote %></i></p>
+                <p><i><%= show_book_quote(discussion) %></i></p>
 
                 <p><strong><%= discussion.body %></strong></p>
 

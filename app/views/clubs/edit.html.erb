@@ -8,15 +8,15 @@
 
   <%= f.input :name %>
 
-  <%= f.input :genre, collection: ["Action", "Adventure", "Classic", "Comedy", "Crime", "Drama", "Dystopia", "Fantasy", "General", "Historical", "Horror", "Mystery", "Non-fiction", "Romance", "Satire", "Sci-Fi", "Tech", "Thriller", "YA Fiction" ], label_html: { class: 'style-label' } %>
+  <%= f.input :genre, collection: @genres, label_html: { class: 'style-label' } %>
 
-  <%= f.input :subgenre, as: :string, required: false %>
+  <%= f.input :subgenre, as: :string %>
 
   <%= f.input :description, as: :string %>
   
-  <%= f.input :club_image %>
+  <%# <%= f.input :club_image %>
 
-  <%= f.input :cover_image %>
+  <%# <%= f.input :cover_image %>
 
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>

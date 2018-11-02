@@ -5,46 +5,34 @@
     <div class="primary-profile">
         <%= image_tag @user.image.url %>
 
-        <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
+        <h1><%= full_name(@user) %></h1>
 
         <i class="fas fa-map-marker-alt"></i>
         <%= @user.country_name  %>
-
     </div>
 
     <div class="secondary-profile">
         <h2>Bio</h2>
-            <%= @user.bio.nil? || @user.bio == "" ? "#{@quote} — #{@author}" : @user.bio  %>
+            <%= show_bio(@user) %>
         
         <h2>Clubs</h2>
-            <% if !@clubs.empty? %>
-                <% @clubs.each do |club| %>
-                    <div>
-                        <%= link_to club.name, club_path(club) %>
-                        <%= club.genre %>
-                    </div>
-                <% end %>
-            <% else %>
-                <% if  @user == current_user %>
-                    You have not joined any club yet. Start <%= link_to "here", clubs_path %>!
-                 <% else %>
-                    This user has not joined any club yet.
-                 <% end %>
-            <% end %>
+            <%= show_clubs(@user) %>
     </div>
         
     <div class="social">
-
         <h2>Find me on</h2>
-            <a href="https://twitter.com/<%= @user.twitter %>" > <i class="fab fa-twitter"></i></a>
-            <a href="https://www.facebook.com/<%= @user.facebook %>"> <i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/<%= @user.instagram %>"> <i class="fab fa-instagram"></i></a>
+            <%= show_socials(@user, 'twitter') %>
+            <%= show_socials(@user, 'facebook') %>
+            <%= show_socials(@user, 'instagram') %>
 
         <h2>Let's chat on Slack</h2>
-            <a href="https://rebelbasetalk.slack.com/team/<%= @user.slack %>"> <i class="fab fa-slack"></i></a>
-
+            <%= show_socials(@user, 'slack') %>
     </div>
 
 </div>
+
+<p class="narrow center">
+    <%= random_book_quote(@quote, @author) %>
+</p>
 
 <%= button_to "Edit profile", edit_admin_user_path, { method: 'get', class: 'btn btn-primary' } %>
