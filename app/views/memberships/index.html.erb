@@ -1,12 +1,28 @@
-<h1>Your Clubs</h1>
+<h1 class="center">Clubs You Follow</h1>
 
 <% if @clubs.empty? %>
     You haven't joined any clubs yet. Why not start your own?
 <% else %>
-    <% @clubs.each do |club| %>
-        <%= link_to club.name, club_path(club) %>
-    <% end %>
-<% end %>
+    <div class="grid-wrapper">
+        <% @genres.each do |genre| %>
+            <div class="tags grid">
+                <p class="genre tag <%= genre.downcase %> "><%= genre %></p>
 
+                <div class="club-wrapper-box">
+                    <ul>
+                        <% @clubs.each do |club| %>
+                            <% if club.genre == genre %>
+                                <li>
+                                    <%= link_to club.name, club_path(club) %>
+                                </li>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+<% end %>
 
 <%= button_to "Create A New Club", new_club_path, { method: 'get', class: "btn btn-primary" } %>
