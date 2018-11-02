@@ -352,7 +352,6 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pg
-  pry
   puma (~> 3.11)
   rails (= 5.2.1)
   sass-rails (~> 5.0)
