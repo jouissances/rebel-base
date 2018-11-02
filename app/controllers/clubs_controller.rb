@@ -1,13 +1,16 @@
 class ClubsController < ApplicationController
 
     before_action :authenticate_user!, except: [:index]
+    before_action :set_club, except: [:index, :new, :create]
 
     def index
         @clubs = Club.all
+        @genres = ["Action", "Adventure", "Classic", "Comedy", "Crime", "Drama", "Dystopia", "Fantasy", "General", "Historical", "Horror", "Mystery", "Non-fiction", "Romance", "Satire", "Sci-Fi", "Tech", "Thriller", "YA-Fiction"]
     end
 
     def new
         @club = Club.new
+        @genres = ["Action", "Adventure", "Classic", "Comedy", "Crime", "Drama", "Dystopia", "Fantasy", "General", "Historical", "Horror", "Mystery", "Non-fiction", "Romance", "Satire", "Sci-Fi", "Tech", "Thriller", "YA-Fiction"]
     end
 
     def create
@@ -32,10 +35,12 @@ class ClubsController < ApplicationController
     end
 
     def show
-        @club = Club.friendly.find(params[:id])
-        @user = current_user
         @membership_status = @club.memberships.find_by_user_id(current_user.id)
+        @admin_membership = @club.memberships.where(admin: 1)
+        @admin = User.find(@admin_membership.pluck(:user_id).join(""))
+
         @followers = @club.followers(User)
+
         @shelf = @club.shelf
         @current_book = Book.find(@shelf.current_book) if @shelf.current_book
         @upcoming_books = @shelf.upcoming_books.map { |book| Book.find(book) }
@@ -43,7 +48,6 @@ class ClubsController < ApplicationController
     end
 
     def edit
-        @club = Club.friendly.find(params[:id])
         membership = @club.memberships.find_by_user_id(current_user.id)
         if membership.admin = true
             render 'edit'
@@ -54,7 +58,6 @@ class ClubsController < ApplicationController
     end
 
     def update
-        @club = Club.friendly.find(params[:id])
         if @club.update!(club_params)
             flash[:success] = "The club is successfully edited."
             redirect_to @club
@@ -65,19 +68,18 @@ class ClubsController < ApplicationController
     end
 
     def destroy
-        @club = Club.friendly.find(params[:id])
         @club.destroy
         redirect_to memberships_path
     end
  
     private
 
-    def club_params
-        params.require(:club).permit(:name, :genre, :subgenre, :description, :club_image, :cover_image)
+    def set_club
+        @club = Club.friendly.find(params[:id])
     end
 
-    def set_user
-        @user = current_user
+    def club_params
+        params.require(:club).permit(:name, :genre, :subgenre, :description, :club_image, :cover_image)
     end
 
 end

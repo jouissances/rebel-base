@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
 
+    before_action :authenticate_user!
+
     def show
         @user = User.friendly.find(params[:id])
         @clubs = @user.followees(Club)

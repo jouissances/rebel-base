@@ -1,9 +1,11 @@
 class MembershipsController < ApplicationController
 
+    before_action :authenticate_user!
     before_action :set_user
 
     def index
         @clubs = @user.followees(Club)
+        @genres = ["Action", "Adventure", "Classic", "Comedy", "Crime", "Drama", "Dystopia", "Fantasy", "General", "Historical", "Horror", "Mystery", "Non-fiction", "Romance", "Satire", "Sci-Fi", "Tech", "Thriller", "YA-Fiction" ]
     end
 
     def new
