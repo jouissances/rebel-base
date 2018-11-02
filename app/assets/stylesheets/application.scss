@@ -4,6 +4,7 @@ $theme-colors: ( "bootstrap": #563d7c, "simpleform": #00617f );
 @import "books";
 @import "discussions";
 @import "admin/users";
+@import "users";
 
 // simple_form helpers
 @import "simple_form-bootstrap/simple_form-bootstrap";
@@ -46,7 +47,12 @@ a {
 
 .center {
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.narrow {
+    width: 60%;
 }
 
 div.form-label-group label {
@@ -97,6 +103,10 @@ header {
     header img {
         height: 50px;
         border-radius: 50%;
+    }
+
+    header div.logo a {
+        margin-left: 10px;
     }
 
     header nav a {
@@ -294,7 +304,7 @@ section.new-discussions div.discussion-wrapper h3 a {
 section.new-clubs a.right,
 section.new-discussions a.right {
     position: relative;
-    left: 95%;
+    left: 85%;
     padding: 3vh 0;
 }
 

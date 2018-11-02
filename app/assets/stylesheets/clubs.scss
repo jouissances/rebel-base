@@ -22,8 +22,18 @@ div.club h1 {
     font-weight: 700;
 }
 
-div.tags {
-    display: flex;
+div.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 25px;
+}
+
+div.tags.grid {
+    display: block;
+}
+
+div.tags div.club-wrapper-box {
 }
 
 div.tags p.tag {
@@ -32,6 +42,7 @@ div.tags p.tag {
     font-family: 'Maison Neue';
     font-weight: 400;
     text-transform: uppercase;
+    display: inline-block;
 }
 
 div.tags p.genre {
@@ -40,7 +51,7 @@ div.tags p.genre {
 }
 
 div.tags p.action {
-    background-color: blue;
+    background-color: #808000;
 }
 
 div.tags p.adventure {
@@ -49,11 +60,10 @@ div.tags p.adventure {
 
 div.tags p.classic {
     background-color: #ddbbbb;
-    color: #333333;
 }
 
 div.tags p.comedy {
-    background-color: yellow;
+    background-color: #ffe119;
     color: #333333;
 }
 
@@ -63,7 +73,6 @@ div.tags p.crime {
 
 div.tags p.drama {
     background-color: salmon;
-    color: #333333;
 }
 
 div.tags p.dystopia {
@@ -75,7 +84,7 @@ div.tags p.fantasy {
 }
 
 div.tags p.historical {
-    background-color: sienna;
+    background-color: #c07b53;
 }
 
 div.tags p.horror {
@@ -96,12 +105,12 @@ div.tags p.romance {
 }
 
 div.tags p.satire {
-    background-color: #FF8020;
+    background-color: #bfef45;
+    color: #333333;
 }
 
 div.tags p.sci-fi {
     background-color: silver;
-    color: #333333;
 }
 
 div.tags p.tech {
@@ -109,12 +118,11 @@ div.tags p.tech {
 }
 
 div.tags p.thriller {
-    background-color: #8d9092;
-    color: #333333;
+    background-color: #6f4126;
 }
 
 div.tags p.ya-fiction {
-    background-color: #ACE1AF;
+    background-color: #aaffc3;
     color: #333333;
 }
 

@@ -1,3 +1,30 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+form.simple_form {
+    padding: 6vh 0 5vh 0;
+}
+
+form.simple_form.new_user div.field,
+form.simple_form.edit_user div.field {
+    width: 30%;
+    margin: 0 auto;
+    margin-bottom: 3vh;
+}
+
+form.simple_form.new_user div.actions,
+form.simple_form.edit_user div.actions {
+    margin-bottom: 3vh;   
+}
+
+form.simple_form.new_user div.actions .btn,
+form.simple_form.edit_user div.actions .btn {
+    margin-right: 0;
+}
+
+form.button_to input.left {
+    position: relative;
+    right: 40.5%;
+}
+
