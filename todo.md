@@ -12,17 +12,16 @@ To-do:
 - [x] Add book search functionality
 - [x] Club's individual page shows shelf section
 - [x] Allow discussion and comments to be added during readings only
-- [ ] 
+- [x] Categorize clubs according to genres
 
 Confirm:
-- [ ] Views that should be restricted are restricted
+- [x] Views that should be restricted are restricted
 - [x] Models use slugs in URL as much as possible (use [FriendlyId](https://github.com/norman/friendly_id))
-- [ ] All appropriate validations are working
-- [ ] All flash messages are showing at the right place, at the right time
+- [x] All appropriate validations are working
+- [x] All flash messages are showing at the right place, at the right time
 - [x] Use strong params
 - [x] Use nested resources somewhere
-- [ ]
+- [x] Confirm refactoring is about done
 
 Bugs: 
-- [x] Sometimes book ISBN queried doesn't match the added book
-- [ ]
+- [x] Sometimes book ISBN queried doesn't match the added book, especially for textbooks and documents
