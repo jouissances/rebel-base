@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
 
     def index
         @clubs = @user.followees(Club)
-        @genres = ["Action", "Adventure", "Classic", "Comedy", "Crime", "Drama", "Dystopia", "Fantasy", "General", "Historical", "Horror", "Mystery", "Non-fiction", "Romance", "Satire", "Sci-Fi", "Tech", "Thriller", "YA-Fiction" ]
+        @genres = @clubs.map { |club| club.genre }
     end
 
     def new
