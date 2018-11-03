@@ -334,8 +334,9 @@ section.new-discussions div.discussion-wrapper h3 {
     line-height: 1.5;
 }
 
-section.new-discussions div.discussion-wrapper p {
-    margin-bottom: 0;
+section.new-discussions div.discussion-wrapper p,
+section.new-discussions div.discussion-wrapper p strong {
+    margin-bottom: 1rem;
     font-size: 10px;
     font-family: 'Px Grotesk';
 }
