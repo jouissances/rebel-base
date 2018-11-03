@@ -17,6 +17,13 @@ $theme-colors: ( "bootstrap": #563d7c, "simpleform": #00617f );
 }
 
 @font-face {   
+    font-family: 'Maison Neue';   
+    src: font-url('MaisonNeue-Mono.ttf');  
+    font-weight: 400;
+    font-style: normal; 
+}
+
+@font-face {   
     font-family: 'Px Grotesk';   
     src: font-url('PxGrotesk-Bold.otf');  
     font-weight: 600;
@@ -183,9 +190,6 @@ div.club-grid img {
     height: 350px;
     object-fit: cover;
     object-position: 50% 20%;
-}
-
-div.club-grid div.tags p.tag {
 }
 
 div.club-grid p.description {
