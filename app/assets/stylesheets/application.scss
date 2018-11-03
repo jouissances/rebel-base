@@ -47,6 +47,13 @@ span#typed {
     font-weight: 200;
 }
 
+h1 {
+    font-family: 'Px Grotesk';
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 5vh;
+}
+
 a {
     font-family: 'Px Grotesk';
     font-weight: 600;
@@ -126,11 +133,6 @@ header {
     header nav a {
         margin: 0 12px;
     }
-
-section.new-clubs h2.title,
-section.new-discussions h2.title {
-    font-family: 'Px Grotesk'
-}
 
 div.club-grid-wrapper {
     display: grid;
@@ -234,13 +236,6 @@ div.about {
     margin: 14vh auto;
     line-height: 2;
 }
-
-    div.about h1 {
-        font-family: 'Px Grotesk';
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 5vh;
-    }
 
     div.about h2 {
         font-family: 'Px Grotesk';
