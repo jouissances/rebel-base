@@ -127,6 +127,11 @@ header {
         margin: 0 12px;
     }
 
+section.new-clubs h2.title,
+section.new-discussions h2.title {
+    font-family: 'Px Grotesk'
+}
+
 div.club-grid-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
