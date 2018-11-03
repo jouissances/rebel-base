@@ -166,9 +166,6 @@ div.club-grid {
     position: relative;
 }
 
-div.club-grid p.book-title {
-}
-
 div.club-grid p.book-title a {
     color: #777777;
     font-family: 'Maison Neue';
@@ -327,17 +324,21 @@ footer {
         padding-left: 5px;
     }
 
-section.new-discussions div.discussion-wrapper h3 {
-    font-size: 1.25rem;
+section.new-discussions div.discussion-wrapper h3,
+section.new-discussions div.discussion-wrapper {
+    font-size: 12px;
     font-weight: 600;
     font-family: 'Px Grotesk';
     line-height: 1.5;
 }
 
+section.new-discussions div.discussion-wrapper p i {
+    font-size: 9px;
+}
+
 section.new-discussions div.discussion-wrapper p,
 section.new-discussions div.discussion-wrapper p strong {
     margin-bottom: 1rem;
-    font-size: 10px;
     font-family: 'Px Grotesk';
 }
 
