@@ -280,15 +280,19 @@ section.content p {
     margin-bottom: 3vh;
 }
 
+section.content p.book-title {
+    margin-bottom: 2vh;
+}
+
 section.new-clubs,
 section.new-discussions {
     padding-bottom: 6vh;
     border-bottom: 1px solid #ccc;
 }
 
-section.new-clubs h2,
-section.new-discussions h2 {
-    margin-top: 5vh;
+section.new-clubs h1.club-name,
+section.new-discussions h1.club-name {
+    margin-bottom: 2vh;
 }
 
 form {

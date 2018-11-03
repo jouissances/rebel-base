@@ -37,7 +37,7 @@
 
                     <p class="book-title"><%= link_to show_current_book_title_and_author(club), club_shelf_book_path(:id => club.shelf.current_book, :club_id => club.id, :shelf_id => club.shelf.id) if club.shelf.current_book %> </p>
                     
-                    <h1><%= link_to club.name, club %></h1>
+                    <h1 class="club-name"><%= link_to club.name, club %></h1>
 
                     <div class="tags">
                         <p class="genre tag <%= club.genre.downcase %>"><%= club.genre %></p>
