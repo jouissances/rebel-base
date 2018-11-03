@@ -9,6 +9,20 @@ $theme-colors: ( "bootstrap": #563d7c, "simpleform": #00617f );
 // simple_form helpers
 @import "simple_form-bootstrap/simple_form-bootstrap";
 
+@font-face {   
+    font-family: 'Maison Neue';   
+    src: font-url('MaisonNeue-Light.ttf');  
+    font-weight: 200;
+    font-style: normal; 
+}
+
+@font-face {   
+    font-family: 'Px Grotesk';   
+    src: font-url('PxGrotesk-Bold.otf');  
+    font-weight: 600;
+    font-style: normal; 
+}
+
 // This file contains CSS for the static pages, as well as application.html.erb layout that is used throughout the website.
 
 * {
