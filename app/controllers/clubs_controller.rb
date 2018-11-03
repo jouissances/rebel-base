@@ -43,8 +43,8 @@ class ClubsController < ApplicationController
 
         @shelf = @club.shelf
         @current_book = Book.find(@shelf.current_book) if @shelf.current_book
-        @upcoming_books = @shelf.upcoming_books.map { |book| Book.find(book) }
-        @read_books = @shelf.read_books.map { |book| Book.find(book) }
+        @upcoming_books = @shelf.upcoming_books.compact.map { |book| Book.find(book) }
+        @read_books = @shelf.read_books.compact.map { |book| Book.find(book) }
     end
 
     def edit

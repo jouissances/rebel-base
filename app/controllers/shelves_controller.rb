@@ -9,8 +9,8 @@ class ShelvesController < ApplicationController
     def show
         @shelf = Shelf.find(params[:id])
         @current_book = Book.find(@shelf.current_book) if @shelf.current_book
-        @upcoming_books = @shelf.upcoming_books
-        @read_books = @shelf.read_books
+        @upcoming_books = @shelf.upcoming_books.compact
+        @read_books = @shelf.read_books.compact
     end
 
     private
