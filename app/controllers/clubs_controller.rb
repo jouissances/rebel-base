@@ -1,6 +1,6 @@
 class ClubsController < ApplicationController
 
-    before_action :authenticate_user!, except: [:index]
+    before_action :authenticate_user!
     before_action :set_club, except: [:index, :new, :create]
 
     def index
