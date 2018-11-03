@@ -1,6 +1,6 @@
 # Rebel Base
 
-This web application is a platform for book club communities around the world — where readers can discuss books, characters, chapters, quotes, etc. Link is [here]().
+This web application is a platform for book club communities around the world — where readers can discuss books, characters, chapters, quotes, etc. Start reading with us [here](https://rebel-base.herokuapp.com).
 
 ## Usage
 
