@@ -27,6 +27,7 @@ div.grid-wrapper {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     grid-gap: 25px;
+    padding-bottom: 5vh;
 }
 
 div.tags.grid {
