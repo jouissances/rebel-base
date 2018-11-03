@@ -12,20 +12,20 @@
     </div>
 
     <div class="secondary-profile">
-        <h1>Bio</h1>
+        <h1 class="sub">Bio</h1>
             <%= show_bio(@user) %>
         
-        <h1>Clubs</h1>
+        <h1 class="sub">Clubs</h1>
             <%= show_clubs(@user) %>
     </div>
         
     <div class="social">
-        <h1>Find me on</h1>
+        <h1 class="sub">Find me on</h1>
             <%= show_socials(@user, 'twitter') %>
             <%= show_socials(@user, 'facebook') %>
             <%= show_socials(@user, 'instagram') %>
 
-        <h1>Let's chat on Slack</h1>
+        <h1 class="sub">Let's chat on Slack</h1>
             <%= show_socials(@user, 'slack') %>
     </div>
 
