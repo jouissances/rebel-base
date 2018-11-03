@@ -12,9 +12,14 @@ div.comment-form .btn {
     margin-bottom: 3vh;
 }
 
+div.discussion-form input[type="text"] {
+    font-size: 14px;
+    text-align: left;
+}
+
 div.discussion-form textarea {
     font-size: 14px;    
-    height: 35px !important;
+    height: 100px !important;
     padding-top: 0.5rem !important;
     padding-bottom: 0.5rem !important;
     margin-top: 0;
