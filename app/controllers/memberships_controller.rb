@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
 
     def index
         @clubs = @user.followees(Club)
-        @genres = @clubs.map { |club| club.genre }
+        @genres = @clubs.map { |club| club.genre }.uniq
     end
 
     def new
