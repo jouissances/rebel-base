@@ -1,4 +1,4 @@
-<h1>Current Book</h1>
+<h1 class="sub">Current Book</h1>
     <% if @current_book %>
         <div class="book-grid-wrapper">
             <div class="book-grid">
@@ -11,7 +11,7 @@
     <% end %>
 
 <div class="inline">
-    <h1>Upcoming Books</h1>
+    <h1 class="sub">Upcoming Books</h1>
     <%= button_to "Add a Book", { :action => "new", :controller => "books", :club_id => params[:id], :shelf_id => @shelf.id }, :class => "btn btn-primary", :method => "get" %>
 </div>
 
@@ -28,7 +28,7 @@
         <p>This club has no upcoming books to read.</p>
 <% end %>
 
-<h1>Read Books</h1>
+<h1 class="sub">Read Books</h1>
 <% if !@shelf.read_books.empty? %>
     <div class="book-grid-wrapper">
         <% @read_books.each do |book| %>
