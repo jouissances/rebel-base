@@ -14,6 +14,11 @@ div.profile-wrapper h1.sub {
     margin: 3vh 0;
 }
 
+div.profile-wrapper h1.non {
+    margin-bottom: 1rem;
+}
+
+
 div.profile-wrapper img {
     border-radius: 50%;
     height: 150px;
@@ -28,7 +33,7 @@ div.profile-wrapper div.primary-profile {
 }
 
 div.profile-wrapper div.primary-profile img {
-    margin: 2vh 0;
+    margin-bottom: 2vh;
 }
 
 div.profile-wrapper div.secondary-profile {
