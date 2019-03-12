@@ -1,0 +1,16 @@
+<% if @discussion.comments.any? %>
+    <% @discussion.comments.each do |comment| %>
+        <div class="comment">
+            <i><%= time_ago_in_words(comment.created_at) %> ago</i>
+            <%= comment.user.first_name %> says:
+            
+            <%= comment.body %>
+
+            <% if comment.user == current_user || @membership_status.admin == true %>
+                <%= link_to "Delete", club_shelf_book_discussion_comment_destroy_path(:club_id => params[:club_id], :book_id => params[:book_id], :discussion_id => @discussion.id, :comment_id => comment.id), :method => :delete %>
+            <% end %>
+        </div>
+    <% end %>
+<% else %>
+    <p>There are no comments yet.</p>
+<% end %>

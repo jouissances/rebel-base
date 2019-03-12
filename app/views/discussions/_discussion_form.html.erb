@@ -1,0 +1,15 @@
+<div class="discussion-form">
+    <h1 class="sub">Add Discussion</h1>
+
+    <%= form_for [@club, @shelf, @book, @discussion] do |f| %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
+
+        <br>
+        <%= f.text_field :book_quote, class: "form-control", placeholder: "Add an optional book quote.." %>
+        <br>
+        <%= f.text_area :body, class: "form-control", placeholder: "Write a discussion.." %>
+        
+        <%= f.submit "Create Discussion", class: "btn btn-primary btn-md", style: "margin-top: 5px" %>
+    <% end %>
+</div>
+
