@@ -18,7 +18,7 @@
                     <%= link_to "Delete", club_shelf_book_discussion_destroy_path(@club, @shelf, @book, Discussion.find(d.id)), :method => :delete %>
                 <% end %>
 
-            <p><%= link_to "Show All Comments", club_shelf_book_discussion_comments_path(@club, @shelf, @book, Discussion.find(d.id)), :id => "load_comments_#{d.id}", :class => "load_comments" %></p>
+            <p class="load_comments_link"><%= link_to "Show All Comments", club_shelf_book_discussion_comments_path(@club, @shelf, @book, Discussion.find(d.id)), :id => "load_comments_#{d.id}", :class => "load_comments" %></p>
 
             <div id="comment-wrapper-<%= d.id %>" class="comment-wrapper">
             </div>

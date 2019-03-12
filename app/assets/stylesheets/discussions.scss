@@ -8,6 +8,10 @@ div.comment-form .btn {
     margin-top: 3vh !important;
 }
 
+div.discussion h3 {
+    font-family: "Px Grotesk";
+}
+
 div.comment-form .btn {
     margin-bottom: 3vh;
 }
@@ -60,4 +64,9 @@ div.comment-form textarea {
     padding-top: 0.5rem !important;
     padding-bottom: 0.5rem !important;
     margin-top: 0;
+}
+
+p.load_comments_link {
+    margin-top: 1.5vh;
+    margin-left: 0;
 }
