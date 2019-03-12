@@ -6,6 +6,12 @@ class ClubsController < ApplicationController
     def index
         @clubs = Club.all
         @genres = ["Action", "Adventure", "Classic", "Comedy", "Crime", "Drama", "Dystopia", "Fantasy", "General", "Historical", "Horror", "Mystery", "Non-fiction", "Romance", "Satire", "Sci-Fi", "Tech", "Thriller", "YA-Fiction"]
+
+        respond_to do |format|
+            format.html { render :index }
+            format.json { render :json => @clubs }
+        end
+
     end
 
     def new
@@ -45,6 +51,12 @@ class ClubsController < ApplicationController
         @current_book = Book.find(@shelf.current_book) if @shelf.current_book
         @upcoming_books = @shelf.upcoming_books.compact.map { |book| Book.find(book) }
         @read_books = @shelf.read_books.compact.map { |book| Book.find(book) }
+
+        respond_to do |format|
+            format.html { render :show }
+            format.json { render :json => @club }
+        end
+     
     end
 
     def edit
@@ -58,8 +70,8 @@ class ClubsController < ApplicationController
     end
 
     def update
-        if @club.update!(club_params)
-            flash[:success] = "The club is successfully edited."
+        if @club.update(club_params)
+            flash[:success] = "The club is successfully updated."
             redirect_to @club
         else
             flash[:danger] = "The club could not be updated."
@@ -79,7 +91,8 @@ class ClubsController < ApplicationController
     end
 
     def club_params
-        params.require(:club).permit(:name, :genre, :subgenre, :description, :club_image, :cover_image)
+        # params.require(:club).permit(:id, :name, :genre, :subgenre, :description)
+        params.fetch(:club, {}).permit(:id, :name, :genre, :subgenre, :description)
     end
 
 end
