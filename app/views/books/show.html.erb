@@ -17,19 +17,18 @@
 
 <div class="book-wrapper">
         <div class="left">
-                <h1><%= link_to @book.title, @book.link %></h1>
-                <p>by <i><%= @book.author %></i></p>
-                <p><%= @book.description %></p>
+                <h1 class="book-title"><%= link_to @book.title, @book.link %></h1>
+                <p>by <i class="book-author"><%= @book.author %></i></p>
+                <p class="book-description"><%= @book.description %></p>
 
                 <%= render "options" %>
-
         </div>
 
         <div class="right">
-                <%= image_tag @book.image_large %>
+                <%= link_to "Next Book", 'javascript:void(0)', :class => 'js-next', :data => {:id => @book.id } if @book.id.to_s != @current_book %>
+
+                <%= image_tag @book.image_large, :class => "book-image" %>
         </div>
 </div>
 
-<%= render "discussions_and_comments" unless @upcoming_books.include?(@book.id) %>
-
-<%= render "discussion_form" if @book.id.to_s == @current_book %>
+<%= link_to "See Discussions", club_shelf_book_discussions_path(@club, @shelf, @book) %>

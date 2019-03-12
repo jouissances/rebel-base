@@ -6,6 +6,11 @@ class MembershipsController < ApplicationController
     def index
         @clubs = @user.followees(Club)
         @genres = @clubs.map { |club| club.genre }.uniq
+
+        respond_to do |format|
+            format.html { render :index }
+            format.json { render :json => @clubs }
+        end
     end
 
     def new
@@ -21,7 +26,7 @@ class MembershipsController < ApplicationController
             redirect_to memberships_path
         end
     end
-
+    
     def update
         @club = Club.friendly.find(params[:id])
         @user.follow!(@club)

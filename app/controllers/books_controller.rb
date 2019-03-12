@@ -1,12 +1,21 @@
 class BooksController < ApplicationController
+
+    respond_to :html, :js
     
     before_action :authenticate_user!
     before_action :check_membership_status
     
-    before_action :set_club, except: [:new, :create]
-    before_action :set_shelf, except: [:new]
-    before_action :set_book, except: [:new, :create]
+    before_action :set_club, except: [:index, :new, :create]
+    before_action :set_shelf, except: [:index, :new]
+    before_action :set_book, except: [:index, :new, :create]
     
+    def index
+        @books = Book.all
+        respond_to do |format|
+            format.json { render :json => @books }
+        end
+    end
+
     def new
         # Searches for books to add to upcoming shelf
         @book = Book.new
@@ -40,6 +49,9 @@ class BooksController < ApplicationController
 
     def show
         # Show book details when it's already added on the shelf (instantiated)
+        @books = Book.all
+        @book = Book.friendly.find(params[:id])
+
         @current_book = @shelf.current_book
         @upcoming_books = @shelf.upcoming_books
 
@@ -49,6 +61,11 @@ class BooksController < ApplicationController
         @discussions = Discussion.all
 
         @comment = Comment.new
+
+        respond_to do |format|
+            format.html { render :show }
+            format.json { render :json => @book }
+        end
     end
 
     def set_as_current
