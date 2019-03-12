@@ -1,0 +1,41 @@
+<div class="discussions">
+    <h1 class="sub">Discussions</h1>
+
+    <p><%= link_to "Back to Book", club_shelf_book_path(@club, @shelf, @book) %></p>
+
+    <% if @discussions.empty? %>
+        There are no discussions yet.    
+    <% else %>
+        <% @discussions.each do |d| %>
+            <div class="discussion block">
+                <h3><%= d.title %></h3>
+                <p><i><%= d.book_quote if d.book_quote %></i></p>
+                <p><%= d.body %></p>
+                        <i>Written by <%= d.user == current_user ? "you" : d.user.first_name %> <%= time_ago_in_words(d.created_at) %> ago</i>
+
+                <% if d.user == current_user %>
+                    <%= link_to "Edit", edit_club_shelf_book_discussion_path(@club, @shelf, @book, Discussion.find(d.id))%>
+                    <%= link_to "Delete", club_shelf_book_discussion_destroy_path(@club, @shelf, @book, Discussion.find(d.id)), :method => :delete %>
+                <% end %>
+
+            <p><%= link_to "Show All Comments", club_shelf_book_discussion_comments_path(@club, @shelf, @book, Discussion.find(d.id)), :id => "load_comments_#{d.id}", :class => "load_comments" %></p>
+
+            <div id="comment-wrapper-<%= d.id %>" class="comment-wrapper">
+            </div>
+
+            <div class="comment-form">
+                <%= form_for [@club, @shelf, @book, Discussion.find(d.id), @comment] do |f| %>
+                    <%= f.text_area :body, class: "form-control", rows: "1", placeholder: "Write a comment..." %>
+                    <%= f.submit "Post Comment", class: "btn btn-md btn-primary", style: "margin-top: 3px" %>
+                <% end %>
+            </div>
+            
+            </div>
+
+        <% end %>
+    <% end %>
+</div>
+
+<%= render "discussion_form" if @book.id.to_s == @current_book %>
+
+<hr>
